@@ -1,4 +1,4 @@
-;;; seoul256-theme.el --- Seoul256 color scheme for Emacs.
+;;; seoul256-theme.el --- Seoul256 color theme for Emacs.
 
 ;; Copyright (C) 2016 Anand Iyer
 
