@@ -18,13 +18,13 @@ Now you can load the theme using M-x `load-theme`.
 
 ## Customization
 ### Color Variants
-Like the original, this port offers different background colors. To change the background, use the variable `seoul256-background`, e.g.,
+Like the original, this port offers different background colors. To change the background, use the variable `seoul256-background` before loading the theme, e.g.,
  
 ```el
 (setq seoul256-background 237)
 (load-theme 'seoul256 t)
 ```
-before calling `load-theme`. The variant of the theme (dark or light) is determined by this variable. Dark variants range from 233 to 239 and light variants range from 252 to 256. By default, the theme uses a dark variant. 
+The variant of the theme (dark or light) is determined by this variable. Dark variants range from 233 to 239 and light variants range from 252 to 256. By default, the theme uses a dark variant. 
 
 ### Overriding Default Colors
 If you don't like the default colors, you can override them by defining new colors in `seoul256-override-colors-alist` variable before loading the theme:
