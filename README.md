@@ -2,6 +2,12 @@
 
 Seoul256 for Emacs is an Emacs theme port of [**seoul256 color scheme for vim**](https://github.com/junegunn/seoul256.vim/) by Junegunn Choi. This is a work in progress.
 
+## Screenshots
+### Dark
+![Seoul256-Emacs-Dark](seoul256-emacs-dark.png?raw=true "Dark Variant")
+### Light
+![Seoul256-Emacs-Light](seoul256-emacs-light.png?raw=true "Light Variant")
+
 ## Installation & Usage
 ### Manual
 Download and save the following file into your custom theme directory (e.g., `~/.emacs.d/themes`):
