@@ -115,25 +115,39 @@
 (defvar seoul256-colors-alist
   (append seoul256-default-colors-alist seoul256-override-colors-alist))
 
-(setq dark-bg 237
-      dark-fg 252
-      light-bg 253
-      light-fg 239
-      seoul256-style "dark")
-    
-(if (and (>= seoul256-background 233)
-         (<= seoul256-background 239))
+(defvar dark-bg
+  237
+  "Default dark background.")
+
+(defvar dark-fg
+  252
+  "Default dark foreground.")
+
+(defvar light-bg
+  253
+  "Default light background.")
+
+(defvar light-fg
+  239
+  "Default light foreground.")
+
+(defvar seoul256-style
+  "dark"
+  "Default style.")
+
+(when (and (>= seoul256-background 233)
+           (<= seoul256-background 239))
     (setq dark-bg seoul256-background))
 
-(if (and (>= seoul256-background 252)
-         (<= seoul256-background 256))
+(when (and (>= seoul256-background 252)
+           (<= seoul256-background 256))
     (setq seoul256-style "light"
           light-bg seoul256-background))
 
 (defun hex (color-dark color-light)
   "Return the HEX value for COLOR-DARK or COLOR-LIGHT depending on the style."
   (setq color-id color-dark)
-  (if (string= seoul256-style "light")
+  (when (string= seoul256-style "light")
       (setq color-id color-light))
   (cdr (assoc color-id seoul256-colors-alist)))
 
@@ -190,21 +204,21 @@
 ;;;; package-specific
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; company
- `(company-preview                        ((t (:foreground ,(hex light-fg dark-fg) :background ,(hex light-bg dark-bg)))))
- `(company-preview-common                 ((t (:foreground ,(hex light-fg dark-fg) :background ,(hex light-bg dark-bg)))))
- `(company-preview-search                 ((t (:foreground ,(hex light-fg dark-fg) :background ,(hex light-bg dark-bg)))))
- `(company-scrollbar-bg                   ((t (:background ,(hex light-bg dark-bg)))))
- `(company-scrollbar-fg                   ((t (:background ,(hex (- light-bg 4) (+ dark-bg 2))))))
- `(company-tooltip                        ((t (:foreground ,(hex light-fg dark-fg) :background ,(hex light-bg dark-bg)))))
- `(company-tooltip-annotation             ((t (:foreground ,(hex light-fg dark-fg) :background ,(hex light-bg dark-bg)))))
- `(company-tooltip-annotation-selection   ((t (:foreground ,(hex light-fg dark-fg) :background ,(hex light-bg dark-bg)))))
- `(company-tooltip-common                 ((t (:foreground ,(hex 32 226) :weight bold :underline t))))
- `(company-tooltip-common-selection       ((t (:foreground ,(hex 32 226) :weight bold :underline t))))
- `(company-tooltip-mouse                  ((t (:foreground ,(hex 32 226)))))
- `(company-tooltip-search                 ((t (:foreground ,(hex light-fg dark-fg) :background ,(hex light-bg dark-bg)))))
- `(company-tooltip-search-selection       ((t (:foreground ,(hex light-fg dark-fg) :background ,(hex light-bg dark-bg)))))
- `(company-tooltip-selection              ((t (:foreground ,(hex 32 226) :background ,(hex 152 23)))))
-
+ `(company-preview                       ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
+ `(company-preview-common                ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
+ `(company-preview-search                ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
+ `(company-scrollbar-bg                  ((t (:background ,(hex (+ dark-bg 2) (- light-bg 2))))))
+ `(company-scrollbar-fg                  ((t (:background ,(hex (- dark-bg 2) (- light-bg 6))))))
+ `(company-tooltip                       ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (+ dark-bg 2) (- light-bg 2))))))
+ `(company-tooltip-annotation            ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (+ dark-bg 2) (- light-bg 2))))))
+ `(company-tooltip-annotation-selection  ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (+ dark-bg 2) (- light-bg 2))))))
+ `(company-tooltip-common                ((t (:foreground ,(hex 226 32) :weight bold :underline t))))
+ `(company-tooltip-common-selection      ((t (:foreground ,(hex 226 32) :weight bold :underline t))))
+ `(company-tooltip-mouse                 ((t (:foreground ,(hex 226 32)))))
+ `(company-tooltip-search                ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
+ `(company-tooltip-search-selection      ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
+ `(company-tooltip-selection             ((t (:foreground ,(hex 226 32) :background ,(hex 23 152)))))
+ 
 ;;; ivy
  `(ivy-current-match            ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
  `(ivy-minibuffer-match-face-1  ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
@@ -234,7 +248,6 @@
 
 (provide-theme 'seoul256)
 ;; Local Variables:
-;; no-byte-compile: t
 ;; fill-column: 99
 ;; End:
 
