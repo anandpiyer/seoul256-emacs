@@ -1,4 +1,4 @@
-;;; seoul256-colors-theme.el --- Seoul256 color theme for Emacs.
+;;; seoul256-colors-theme.el --- Seoul256 color theme.
 
 ;; Copyright (C) 2016 Anand Iyer
 
@@ -7,6 +7,8 @@
 ;; URL: http://github.com/anandpiyer/seoul256-emacs
 ;; Created: 21 October 2016
 ;; Version: 1.0
+;; Keywords: theme
+;; Package-Requires: ((emacs "24.3"))
 
 ;;; MIT License
 ;;
@@ -43,21 +45,23 @@
 
 ;;; Code:
 
-(unless (>= emacs-major-version 24)
-  (error "Requires Emacs 24 or later"))
+(require 'cl-lib)
 
-(defgroup seoul256 nil
-  "Seoul256 color scheme."
+(when (version< emacs-version "24.3") 
+  (error "Requires Emacs 24.3 or later"))
+
+(defgroup seoul256-colors nil
+  "seoul256-colors theme"
   :group 'faces)
 
-(defcustom seoul256-background 253
-  "Background color for seoul256 scheme."
+(defcustom seoul256-colors-background 237
+  "Background color for seoul256-colors scheme."
   :type 'number
-  :group 'seoul-256)
+  :group 'seoul256-colors)
 
-(deftheme seoul256-colors "Seoul256 theme")
+(deftheme seoul256-colors "seoul256-colors theme")
 
-(defvar seoul256-default-colors-alist
+(defvar seoul256-colors-defaults-alist
   '((16 . "#000000") (17 . "#0C0077") (18 . "#14009F") (19 . "#1B00C5") (20 . "#2200E8") (21 .
     "#2900FF") (22 . "#007600") (23 . "#007475") (24 . "#00739E") (25 . "#0071C3") (26 .
     "#006EE7") (27 . "#006BFF") (28 . "#009E00") (29 . "#009D72") (30 . "#009C9C") (31 .
@@ -108,138 +112,135 @@
     "#D0D0D0") (252 . "#D8D8D8") (253 . "#E0E0E0") (254 . "#E9E9E9") (255 . "#F1F1F1") (256 .
     "#FFFFFF")))
 
-(defvar seoul256-override-colors-alist
+(defvar seoul256-colors-overrides-alist
   '()
   "Use this alist to override the theme's default colors.")
 
 (defvar seoul256-colors-alist
-  (append seoul256-default-colors-alist seoul256-override-colors-alist))
+   (append seoul256-colors-defaults-alist seoul256-colors-overrides-alist))
 
-(defvar dark-bg
-  237
-  "Default dark background.")
+(defun seoul256-colors-apply (style dark-fg light-fg dark-bg light-bg)
+  "Apply STYLE variant of seoul256-colors theme using DARK-FG, LIGHT-FG, 
+DARK-BG and LIGHT-BG as main colors."
+  (cl-flet ((hex (dark light)
+                 (let ((color-id dark))
+                   (when (string= style "light")
+                     (setq color-id light))
+                   (cdr (assoc color-id seoul256-colors-alist)))))
 
-(defvar dark-fg
-  252
-  "Default dark foreground.")
+    (custom-theme-set-faces
+     'seoul256-colors
 
-(defvar light-bg
-  253
-  "Default light background.")
-
-(defvar light-fg
-  239
-  "Default light foreground.")
-
-(defvar seoul256-style
-  "dark"
-  "Default style.")
-
-(when (and (>= seoul256-background 233)
-           (<= seoul256-background 239))
-    (setq dark-bg seoul256-background))
-
-(when (and (>= seoul256-background 252)
-           (<= seoul256-background 256))
-    (setq seoul256-style "light"
-          light-bg seoul256-background))
-
-(defun hex (color-dark color-light)
-  "Return the HEX value for COLOR-DARK or COLOR-LIGHT depending on the style."
-  (setq color-id color-dark)
-  (when (string= seoul256-style "light")
-      (setq color-id color-light))
-  (cdr (assoc color-id seoul256-colors-alist)))
-
-(custom-theme-set-faces
- 'seoul256-colors
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; in-built
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; basic ui
- '(button             ((t (:underline t))))
- `(cursor             ((t (:background ,(hex light-bg dark-bg)))))
- `(default            ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
- `(fringe             ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (- dark-bg 1) (- light-bg 1))))))
- `(highlight          ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
- `(hl-line            ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
- `(isearch            ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
- `(isearch-fail       ((t (:foreground ,(hex 196 196) :background ,(hex (+ dark-bg 3) 253)))))
- `(link               ((t (:foreground ,(hex 33 21)))))
- `(link-visited       ((t (:foreground ,(hex 31 19)))))
- `(linum              ((t (:foreground ,(hex 101 101) :background ,(hex (+ dark-bg 1) (- light-bg 2))))))
- `(minibuffer-prompt  ((t (:foreground ,(hex light-fg dark-fg)))))
- `(region             ((t (:background ,(hex 23 152)))))
-
-;;; font-lock
- `(font-lock-builtin-face            ((t (:foreground ,(hex 217 96) :weight bold))))
- `(font-lock-comment-delimiter-face  ((t (:foreground ,(hex 65 65)))))
- `(font-lock-comment-face            ((t (:foreground ,(hex 65 65)))))
- `(font-lock-constant-face           ((t (:foreground ,(hex 73 30)))))
- `(font-lock-doc-face                ((t (:foreground ,(hex 109 30) :slant italic))))
- `(font-lock-function-name-face      ((t (:foreground ,(hex 187 58)))))
- `(font-lock-keyword-face            ((t (:foreground ,(hex 108 66) :weight bold))))
- `(font-lock-preprocessor-face       ((t (:foreground ,(hex 143 58)))))
- `(font-lock-string-face             ((t (:foreground ,(hex 109 30)))))
- `(font-lock-type-face               ((t (:foreground ,(hex 179 94)))))
- `(font-lock-variable-name-face      ((t (:foreground ,(hex 173 131)))))
- `(font-lock-warning-face            ((t (:foreground ,(hex 52 174) :weight bold))))
-
-;;; ido-mode
- `(ido-first-match  ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
-
-;;; mode-line
- `(mode-line            ((t (:foreground ,(hex 187 187) :background ,(hex 95 95)))))
- `(mode-line-buffer-id  ((t (:foreground ,(hex 230 230)))))
- `(mode-line-emphasis   ((t (:foreground ,(hex 256 256)))))
- `(mode-line-highlight  ((t (:foreground ,(hex 228 228)))))
- `(mode-line-inactive   ((t (:foreground ,(hex (+ dark-bg 2) (- light-bg 2)) :background ,(hex 238 238)))))
-
-;;; show-paren
- `(show-paren-match     ((t (:foreground ,(hex 226 200) :background ,(hex (+ dark-bg 1) (- light-bg 3)) :weight bold))))
- `(show-paren-mismatch  ((t (:foreground ,(hex 226 226) :background ,(hex 196 196) :weight bold))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; package-specific
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; company
- `(company-preview                       ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
- `(company-preview-common                ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
- `(company-preview-search                ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
- `(company-scrollbar-bg                  ((t (:background ,(hex (+ dark-bg 2) (- light-bg 2))))))
- `(company-scrollbar-fg                  ((t (:background ,(hex (- dark-bg 2) (- light-bg 6))))))
- `(company-tooltip                       ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (+ dark-bg 2) (- light-bg 2))))))
- `(company-tooltip-annotation            ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (+ dark-bg 2) (- light-bg 2))))))
- `(company-tooltip-annotation-selection  ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (+ dark-bg 2) (- light-bg 2))))))
- `(company-tooltip-common                ((t (:foreground ,(hex 226 32) :weight bold :underline t))))
- `(company-tooltip-common-selection      ((t (:foreground ,(hex 226 32) :weight bold :underline t))))
- `(company-tooltip-mouse                 ((t (:foreground ,(hex 226 32)))))
- `(company-tooltip-search                ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
- `(company-tooltip-search-selection      ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
- `(company-tooltip-selection             ((t (:foreground ,(hex 226 32) :background ,(hex 23 152)))))
+     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     ;;;; in-built
+     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     ;; basic ui
+     '(button             ((t (:underline t))))
+     `(cursor             ((t (:background ,(hex light-bg dark-bg)))))
+     `(default            ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
+     `(fringe             ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (- dark-bg 1) (- light-bg 1))))))
+     `(highlight          ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
+     `(hl-line            ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
+     `(isearch            ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
+     `(isearch-fail       ((t (:foreground ,(hex 196 196) :background ,(hex (+ dark-bg 3) 253)))))
+     `(link               ((t (:foreground ,(hex 33 21)))))
+     `(link-visited       ((t (:foreground ,(hex 31 19)))))
+     `(linum              ((t (:foreground ,(hex 101 101) :background ,(hex (+ dark-bg 1) (- light-bg 2))))))
+     `(minibuffer-prompt  ((t (:foreground ,(hex light-fg dark-fg) :background ,(hex light-bg dark-bg)))))
+     `(region             ((t (:background ,(hex 23 152)))))
  
-;;; ivy
- `(ivy-current-match            ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
- `(ivy-minibuffer-match-face-1  ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
- `(ivy-minibuffer-match-face-2  ((t (:background ,(hex 22 150)))))
- `(ivy-minibuffer-match-face-3  ((t (:background ,(hex 23 151)))))
- `(ivy-minibuffer-match-face-4  ((t (:background ,(hex 24 152)))))
+     ;; font-lock
+     `(font-lock-builtin-face            ((t (:foreground ,(hex 217 96) :weight bold))))
+     `(font-lock-comment-delimiter-face  ((t (:foreground ,(hex 65 65)))))
+     `(font-lock-comment-face            ((t (:foreground ,(hex 65 65)))))
+     `(font-lock-constant-face           ((t (:foreground ,(hex 73 30)))))
+     `(font-lock-doc-face                ((t (:foreground ,(hex 109 30) :slant italic))))
+     `(font-lock-function-name-face      ((t (:foreground ,(hex 187 58)))))
+     `(font-lock-keyword-face            ((t (:foreground ,(hex 108 66) :weight bold))))
+     `(font-lock-preprocessor-face       ((t (:foreground ,(hex 143 58)))))
+     `(font-lock-string-face             ((t (:foreground ,(hex 109 30)))))
+     `(font-lock-type-face               ((t (:foreground ,(hex 179 94)))))
+     `(font-lock-variable-name-face      ((t (:foreground ,(hex 173 131)))))
+     `(font-lock-warning-face            ((t (:foreground ,(hex 52 174) :weight bold))))
 
-;;; linenum-related
- `(linum-relative-current-face   ((t (:foreground ,(hex 131 131) :background ,(hex (- dark-bg 1) (- light-bg 1)) :weight bold))))
- `(nlinum-relative-current-face  ((t (:foreground ,(hex 131 131) :background ,(hex (- dark-bg 1) (- light-bg 1)) :weight bold))))
+     ;; ido-mode
+     `(ido-first-match  ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
 
-;;; smart-mode-line
- `(sml/filename ((t (:foreground ,(hex 187 230) :weight bold))))
+     ;; mode-line
+     `(mode-line            ((t (:foreground ,(hex 187 187) :background ,(hex 95 95)))))
+     `(mode-line-buffer-id  ((t (:foreground ,(hex 230 230)))))
+     `(mode-line-emphasis   ((t (:foreground ,(hex 256 256)))))
+     `(mode-line-highlight  ((t (:foreground ,(hex 228 228)))))
+     `(mode-line-inactive   ((t (:foreground ,(hex (+ dark-bg 2) (- light-bg 2)) :background ,(hex 238 238)))))
+
+     ;; show-paren
+     `(show-paren-match     ((t (:foreground ,(hex 226 200) :background ,(hex (+ dark-bg 1) (- light-bg 3)) :weight bold :underline t))))
+     `(show-paren-mismatch  ((t (:foreground ,(hex 226 226) :background ,(hex 196 196) :weight bold))))
+
+     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     ;;;; package-specific
+     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     ;; company
+     `(company-preview                       ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
+     `(company-preview-common                ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
+     `(company-preview-search                ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
+     `(company-scrollbar-bg                  ((t (:background ,(hex (+ dark-bg 2) (- light-bg 2))))))
+     `(company-scrollbar-fg                  ((t (:background ,(hex (- dark-bg 2) (- light-bg 6))))))
+     `(company-tooltip                       ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (+ dark-bg 2) (- light-bg 2))))))
+     `(company-tooltip-annotation            ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (+ dark-bg 2) (- light-bg 2))))))
+     `(company-tooltip-annotation-selection  ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (+ dark-bg 2) (- light-bg 2))))))
+     `(company-tooltip-common                ((t (:foreground ,(hex 226 32) :weight bold :underline t))))
+     `(company-tooltip-common-selection      ((t (:foreground ,(hex 226 32) :weight bold :underline t))))
+     `(company-tooltip-mouse                 ((t (:foreground ,(hex 226 32)))))
+     `(company-tooltip-search                ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
+     `(company-tooltip-search-selection      ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
+     `(company-tooltip-selection             ((t (:foreground ,(hex 226 32) :background ,(hex 23 152)))))
  
-;;; smart-parens
- `(sp-pair-overlay-face        ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
- `(sp-wrap-overlay-face        ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
- `(sp-wrap-tag-overlay-face    ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
- `(sp-show-pair-match-face     ((t (:foreground ,(hex 226 200) :background ,(hex (+ dark-bg 1) (- light-bg 3)) :weight bold))))
- `(sp-show-pair-mismatch-face  ((t (:foreground ,(hex 226 226) :background ,(hex 196 196) :weight bold))))
-)
+     ;; ivy
+     `(ivy-current-match            ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
+     `(ivy-minibuffer-match-face-1  ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
+     `(ivy-minibuffer-match-face-2  ((t (:background ,(hex 22 150)))))
+     `(ivy-minibuffer-match-face-3  ((t (:background ,(hex 23 151)))))
+     `(ivy-minibuffer-match-face-4  ((t (:background ,(hex 24 152)))))
+
+     ;; linenum-related
+     `(linum-relative-current-face   ((t (:foreground ,(hex 131 131) :background ,(hex (- dark-bg 1) (- light-bg 1)) :weight bold))))
+     `(nlinum-relative-current-face  ((t (:foreground ,(hex 131 131) :background ,(hex (- dark-bg 1) (- light-bg 1)) :weight bold))))
+
+     ;; org-mode
+     `(org-default  ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
+
+     ;; smart-mode-line
+     `(sml/filename ((t (:foreground ,(hex 187 230) :weight bold))))
+ 
+     ;; smart-parens
+     `(sp-pair-overlay-face        ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
+     `(sp-wrap-overlay-face        ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
+     `(sp-wrap-tag-overlay-face    ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
+     `(sp-show-pair-match-face     ((t (:foreground ,(hex 226 200) :background ,(hex (+ dark-bg 1) (- light-bg 3)) :weight bold))))
+     `(sp-show-pair-mismatch-face  ((t (:foreground ,(hex 226 226) :background ,(hex 196 196) :weight bold)))))))
+
+(defun seoul256-colors-create (background)
+  "Create seoul256-colors theme with a given BACKGROUND."
+  (let ((dark-bg 237)
+        (light-bg 237)
+        (dark-fg 252)
+        (light-fg 334)
+        (style "dark"))
+
+    (when (and (>= background 233)
+               (<= background 239))
+      (setq style "dark"
+            dark-bg background))
+
+    (when (and (>= background 252)
+               (<= background 256))
+      (setq style "light"
+            light-bg background))
+
+    (seoul256-colors-apply style dark-fg light-fg dark-bg light-bg)))
+
+(seoul256-colors-create seoul256-colors-background)
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)
