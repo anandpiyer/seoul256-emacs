@@ -1,4 +1,4 @@
-;;; seoul256-theme.el --- Seoul256 color theme for Emacs.
+;;; seoul256-colors-theme.el --- Seoul256 color theme for Emacs.
 
 ;; Copyright (C) 2016 Anand Iyer
 
@@ -31,7 +31,7 @@
 
 ;;; Commentary:
 
-;; A port of the Seoul256 colorscheme to Emacs.
+;; A port of the Seoul256 color scheme to Emacs.
 ;;
 ;; This port contains some modifications, partly due to the differences
 ;; ih customization flexibility offered by Emacs and Vim.  However, I have
@@ -53,9 +53,9 @@
 (defcustom seoul256-background 253
   "Background color for seoul256 scheme."
   :type 'number
-  :group 'seoul256)
+  :group 'seoul-256)
 
-(deftheme seoul256 "Seoul256 theme")
+(deftheme seoul256-colors "Seoul256 theme")
 
 (defvar seoul256-default-colors-alist
   '((16 . "#000000") (17 . "#0C0077") (18 . "#14009F") (19 . "#1B00C5") (20 . "#2200E8") (21 .
@@ -152,7 +152,7 @@
   (cdr (assoc color-id seoul256-colors-alist)))
 
 (custom-theme-set-faces
- 'seoul256
+ 'seoul256-colors
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; in-built
@@ -246,9 +246,9 @@
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide-theme 'seoul256)
+(provide-theme 'seoul256-colors)
 ;; Local Variables:
 ;; fill-column: 99
 ;; End:
 
-;;; seoul256-theme.el ends here
+;;; seoul256-colors-theme.el ends here
