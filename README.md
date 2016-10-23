@@ -13,7 +13,7 @@ Seoul256 for Emacs is an Emacs theme port of [**seoul256 color scheme for vim**]
 ### Manual
 Download and save the following file into your custom theme directory (e.g., `~/.emacs.d/themes`):
 
-* [seoul256-theme.el](https://raw.githubusercontent.com/anandpiyer/seoul256-emacs/master/seoul256-theme.el)
+* [seoul256-colors-theme.el](https://raw.githubusercontent.com/anandpiyer/seoul256-emacs/master/seoul256-colors-theme.el)
 
 Make sure Emacs knows about your custom theme directory. You may do this by adding something like the following in your init file: 
 
@@ -29,7 +29,7 @@ Like the original, this port offers different background colors. To change the b
  
 ```el
 (setq seoul256-background 237)
-(load-theme 'seoul256 t)
+(load-theme 'seoul256-colors t)
 ```
 The variant of the theme (dark or light) is determined by this variable. Dark variants range from 233 to 239 and light variants range from 252 to 256. By default, the theme uses a dark variant. 
 
@@ -40,5 +40,5 @@ If you don't like the default colors, you can override them by defining new colo
 (setq seoul256-override-colors-alist
 '((16 . "#CCCCCC")
   (200  . "#F6F6F6"))
-(load-theme 'seoul256 t)
+(load-theme 'seoul256-colors t)
 ```
