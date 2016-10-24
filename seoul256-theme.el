@@ -6,7 +6,7 @@
 ;; Maintainer: Anand Iyer <anand.ucb@gmail.com>
 ;; URL: http://github.com/anandpiyer/seoul256-emacs
 ;; Created: 21 October 2016
-;; Version: 1.0
+;; Version: 0.1.0
 ;; Keywords: theme
 ;; Package-Requires: ((emacs "24.3"))
 
@@ -206,9 +206,6 @@ LIGHT-BG as main colors."
      ;; linenum-related
      `(linum-relative-current-face   ((t (:foreground ,(hex 131 131) :background ,(hex (- dark-bg 1) (- light-bg 1)) :weight bold))))
      `(nlinum-relative-current-face  ((t (:foreground ,(hex 131 131) :background ,(hex (- dark-bg 1) (- light-bg 1)) :weight bold))))
-
-     ;; org-mode
-     `(org-default  ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
 
      ;; smart-mode-line
      `(sml/filename ((t (:foreground ,(hex 187 230) :weight bold))))
