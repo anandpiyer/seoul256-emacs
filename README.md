@@ -21,7 +21,7 @@ Make sure Emacs knows about your custom theme directory. You may do this by addi
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 ```
 
-Now you can load the theme using `M-x load-theme RET seoul256`.
+Now you can load the theme using <kbd>M-x</kbd> `load-theme` <kbd>RET</kbd> `seoul256`.
 
 ## Customization
 ### Color Variants
