@@ -223,9 +223,9 @@ DARK-BG and LIGHT-BG as main colors."
 (defun seoul256-colors-create (background)
   "Create seoul256-colors theme with a given BACKGROUND."
   (let ((dark-bg 237)
-        (light-bg 237)
+        (light-bg 253)
         (dark-fg 252)
-        (light-fg 334)
+        (light-fg 239)
         (style "dark"))
 
     (when (and (>= background 233)
