@@ -1,4 +1,4 @@
-;;; seoul256-colors-theme.el --- Seoul256 color theme.
+;;; seoul256-theme.el --- Seoul256 theme.
 
 ;; Copyright (C) 2016 Anand Iyer
 
@@ -47,21 +47,21 @@
 
 (require 'cl-lib)
 
-(when (version< emacs-version "24.3") 
+(when (version< emacs-version "24.3")
   (error "Requires Emacs 24.3 or later"))
 
-(defgroup seoul256-colors nil
-  "seoul256-colors theme"
+(defgroup seoul256 nil
+  "seoul256 theme"
   :group 'faces)
 
-(defcustom seoul256-colors-background 237
-  "Background color for seoul256-colors scheme."
+(defcustom seoul256-background 237
+  "Background color for seoul256 scheme."
   :type 'number
-  :group 'seoul256-colors)
+  :group 'seoul256)
 
-(deftheme seoul256-colors "seoul256-colors theme")
+(deftheme seoul256 "Low-contrast color scheme based on Seoul Colors")
 
-(defvar seoul256-colors-defaults-alist
+(defvar seoul256-default-colors-alist
   '((16 . "#000000") (17 . "#0C0077") (18 . "#14009F") (19 . "#1B00C5") (20 . "#2200E8") (21 .
     "#2900FF") (22 . "#007600") (23 . "#007475") (24 . "#00739E") (25 . "#0071C3") (26 .
     "#006EE7") (27 . "#006BFF") (28 . "#009E00") (29 . "#009D72") (30 . "#009C9C") (31 .
@@ -112,16 +112,16 @@
     "#D0D0D0") (252 . "#D8D8D8") (253 . "#E0E0E0") (254 . "#E9E9E9") (255 . "#F1F1F1") (256 .
     "#FFFFFF")))
 
-(defvar seoul256-colors-overrides-alist
+(defvar seoul256-override-colors-alist
   '()
   "Use this alist to override the theme's default colors.")
 
 (defvar seoul256-colors-alist
-   (append seoul256-colors-defaults-alist seoul256-colors-overrides-alist))
+   (append seoul256-default-colors-alist seoul256-override-colors-alist))
 
-(defun seoul256-colors-apply (style dark-fg light-fg dark-bg light-bg)
-  "Apply STYLE variant of seoul256-colors theme using DARK-FG, LIGHT-FG, 
-DARK-BG and LIGHT-BG as main colors."
+(defun seoul256-apply (style dark-fg light-fg dark-bg light-bg)
+  "Apply STYLE variant of seoul256 theme using DARK-FG, LIGHT-FG, DARK-BG and 
+LIGHT-BG as main colors."
   (cl-flet ((hex (dark light)
                  (let ((color-id dark))
                    (when (string= style "light")
@@ -129,7 +129,7 @@ DARK-BG and LIGHT-BG as main colors."
                    (cdr (assoc color-id seoul256-colors-alist)))))
 
     (custom-theme-set-faces
-     'seoul256-colors
+     'seoul256
 
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      ;;;; in-built
@@ -220,8 +220,8 @@ DARK-BG and LIGHT-BG as main colors."
      `(sp-show-pair-match-face     ((t (:foreground ,(hex 226 200) :background ,(hex (+ dark-bg 1) (- light-bg 3)) :weight bold))))
      `(sp-show-pair-mismatch-face  ((t (:foreground ,(hex 226 226) :background ,(hex 196 196) :weight bold)))))))
 
-(defun seoul256-colors-create (background)
-  "Create seoul256-colors theme with a given BACKGROUND."
+(defun seoul256-create (background)
+  "Create seoul256 theme with a given BACKGROUND."
   (let ((dark-bg 237)
         (light-bg 253)
         (dark-fg 252)
@@ -238,18 +238,18 @@ DARK-BG and LIGHT-BG as main colors."
       (setq style "light"
             light-bg background))
 
-    (seoul256-colors-apply style dark-fg light-fg dark-bg light-bg)))
+    (seoul256-apply style dark-fg light-fg dark-bg light-bg)))
 
-(seoul256-colors-create seoul256-colors-background)
+(seoul256-create seoul256-background)
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide-theme 'seoul256-colors)
+(provide-theme 'seoul256)
 ;; Local Variables:
 ;; fill-column: 99
 ;; End:
 
-;;; seoul256-colors-theme.el ends here
+;;; seoul256-theme.el ends here
