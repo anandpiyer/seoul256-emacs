@@ -1,4 +1,4 @@
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=plastic)](https://github.com/anandpiyer/seoul256-emacs/blob/master/LICENSE)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=plastic)](https://github.com/anandpiyer/seoul256-emacs/blob/master/LICENSE) [![MELPA](https://melpa.org/packages/seoul256-theme-badge.svg)](https://melpa.org/#/seoul256-theme)
 #Seoul256 for Emacs 
 
 Seoul256 for Emacs is an Emacs theme port of [**seoul256 color scheme for vim**](https://github.com/junegunn/seoul256.vim/) by Junegunn Choi. This is a work in progress.
@@ -10,6 +10,14 @@ Seoul256 for Emacs is an Emacs theme port of [**seoul256 color scheme for vim**]
 ![Seoul256-Emacs-Light](seoul256-emacs-light.png?raw=true "Light Variant")
 
 ## Installation & Usage
+There are two ways of installing the seoul256 theme.
+### MELPA
+
+ The recommended way to install the soul256 theme is through MELPA. Assuming you have set up MELPA, you can install this theme by simply doing
+
+<kbd>M-x</kbd> `package-install` <kbd>RET</kbd> `seoul256-theme`
+
+Then, just load the theme with <kbd>M-x</kbd> `load-theme`.
 ### Manual
 Download and save the following file into your custom theme directory (e.g., `~/.emacs.d/themes`):
 
