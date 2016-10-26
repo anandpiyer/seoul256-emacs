@@ -1,4 +1,4 @@
-;;; seoul256-theme.el --- Seoul256 theme.
+;;; seoul256-theme.el --- Low-contrast color scheme based on Seoul Colors.
 
 ;; Copyright (C) 2016 Anand Iyer
 
@@ -6,7 +6,7 @@
 ;; Maintainer: Anand Iyer <anand.ucb@gmail.com>
 ;; URL: http://github.com/anandpiyer/seoul256-emacs
 ;; Created: 21 October 2016
-;; Version: 0.1.0
+;; Version: 0.2.0
 ;; Keywords: theme
 ;; Package-Requires: ((emacs "24.3"))
 
@@ -56,6 +56,11 @@
 
 (defcustom seoul256-background 237
   "Background color for seoul256 scheme."
+  :type 'number
+  :group 'seoul256)
+
+(defcustom seoul256-alternate-background 253
+  "Alternate background color for seoul256 scheme."
   :type 'number
   :group 'seoul256)
 
@@ -117,11 +122,13 @@
   "Use this alist to override the theme's default colors.")
 
 (defvar seoul256-colors-alist
-   (append seoul256-default-colors-alist seoul256-override-colors-alist))
+  (append seoul256-default-colors-alist seoul256-override-colors-alist))
 
-(defun seoul256-apply (style dark-fg light-fg dark-bg light-bg)
-  "Apply STYLE variant of seoul256 theme using DARK-FG, LIGHT-FG, DARK-BG and 
-LIGHT-BG as main colors."
+(defvar seoul256-current-bg nil
+  "Current background used by seoul256 theme.")
+
+(defun seoul256-apply (theme style dark-fg light-fg dark-bg light-bg)
+  "Apply theme THEME, a STYLE variant of seoul256 theme using DARK-FG, LIGHT-FG, DARK-BG and LIGHT-BG as main colors."
   (cl-flet ((hex (dark light)
                  (let ((color-id dark))
                    (when (string= style "light")
@@ -129,7 +136,7 @@ LIGHT-BG as main colors."
                    (cdr (assoc color-id seoul256-colors-alist)))))
 
     (custom-theme-set-faces
-     'seoul256
+     theme
 
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      ;;;; in-built
@@ -143,10 +150,10 @@ LIGHT-BG as main colors."
      `(hl-line            ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
      `(isearch            ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
      `(isearch-fail       ((t (:foreground ,(hex 196 196) :background ,(hex (+ dark-bg 3) 253)))))
-     `(link               ((t (:foreground ,(hex 33 21)))))
-     `(link-visited       ((t (:foreground ,(hex 31 19)))))
+     `(link               ((t (:foreground ,(hex 73 23)))))
+     `(link-visited       ((t (:foreground ,(hex 72 22)))))
      `(linum              ((t (:foreground ,(hex 101 101) :background ,(hex (+ dark-bg 1) (- light-bg 2))))))
-     `(minibuffer-prompt  ((t (:foreground ,(hex light-fg dark-fg) :background ,(hex light-bg dark-bg)))))
+     `(minibuffer-prompt  ((t (:foreground ,(hex 173 173) :weight bold))))
      `(region             ((t (:background ,(hex 23 152)))))
  
      ;; font-lock
@@ -195,7 +202,12 @@ LIGHT-BG as main colors."
      `(company-tooltip-search                ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
      `(company-tooltip-search-selection      ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
      `(company-tooltip-selection             ((t (:foreground ,(hex 226 32) :background ,(hex 23 152)))))
- 
+
+     ;; git-gutter
+     `(git-gutter:added     ((t (:foreground ,(hex 108 65) :background ,(hex (+ dark-bg 1) (- light-bg 2)) :weight bold))))
+     `(git-gutter:deleted   ((t (:foreground ,(hex 161 161) :background ,(hex (+ dark-bg 1) (- light-bg 2)) :weight bold))))
+     `(git-gutter:modified  ((t (:foreground ,(hex 68 68) :background ,(hex (+ dark-bg 1) (- light-bg 2)) :weight bold))))
+
      ;; ivy
      `(ivy-current-match            ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
      `(ivy-minibuffer-match-face-1  ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
@@ -203,7 +215,7 @@ LIGHT-BG as main colors."
      `(ivy-minibuffer-match-face-3  ((t (:background ,(hex 23 151)))))
      `(ivy-minibuffer-match-face-4  ((t (:background ,(hex 24 152)))))
 
-     ;; linenum-related
+     ;; linum-relative and nlinenum
      `(linum-relative-current-face   ((t (:foreground ,(hex 131 131) :background ,(hex (- dark-bg 1) (- light-bg 1)) :weight bold))))
      `(nlinum-relative-current-face  ((t (:foreground ,(hex 131 131) :background ,(hex (- dark-bg 1) (- light-bg 1)) :weight bold))))
 
@@ -217,8 +229,8 @@ LIGHT-BG as main colors."
      `(sp-show-pair-match-face     ((t (:foreground ,(hex 226 200) :background ,(hex (+ dark-bg 1) (- light-bg 3)) :weight bold))))
      `(sp-show-pair-mismatch-face  ((t (:foreground ,(hex 226 226) :background ,(hex 196 196) :weight bold)))))))
 
-(defun seoul256-create (background)
-  "Create seoul256 theme with a given BACKGROUND."
+(defun seoul256-create (theme background)
+  "Create a seoul256 theme THEME using a given BACKGROUND."
   (let ((dark-bg 237)
         (light-bg 253)
         (dark-fg 252)
@@ -235,9 +247,20 @@ LIGHT-BG as main colors."
       (setq style "light"
             light-bg background))
 
-    (seoul256-apply style dark-fg light-fg dark-bg light-bg)))
+    (if (string= style "dark")
+        (setq seoul256-current-bg dark-bg)
+      (setq seoul256-current-bg light-bg))
 
-(seoul256-create seoul256-background)
+    (seoul256-apply theme style dark-fg light-fg dark-bg light-bg)))
+
+(defun seoul256-switch-background ()
+  "Switch the background of the current seoul256 theme."
+  (interactive)
+  (if (= seoul256-current-bg seoul256-alternate-background)
+      (seoul256-create 'seoul256 seoul256-background)
+    (seoul256-create 'seoul256 seoul256-alternate-background)))
+
+(seoul256-create 'seoul256 seoul256-background)
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)

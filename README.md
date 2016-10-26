@@ -36,10 +36,30 @@ Now you can load the theme using <kbd>M-x</kbd> `load-theme` <kbd>RET</kbd> `seo
 Like the original, this port offers different background colors. To change the background, use the variable `seoul256-background` before loading the theme, e.g.,
  
 ```el
-(setq seoul256-background 237)
+;;; dark variants
+;; Range:   233 (darkest) ~ 239 (lightest)
+;; Default: 237
+(setq seoul256-background 235)
+(load-theme 'seoul256 t)
+
+;;; light variants
+;; Range:   252 (darkest) ~ 256 (lightest)
+;; Default: 253
+(setq seoul256-background 255)
 (load-theme 'seoul256 t)
 ```
 The variant of the theme (dark or light) is determined by this variable. Dark variants range from 233 to 239 and light variants range from 252 to 256. By default, the theme uses a dark variant. 
+
+### Auto-switching
+Sometimes, it is beneficial to be able to switch between two variants of the theme using a key binding. For this purpose, this theme offers an interactive function `seoul256-switch-background` that switches between `seoul256-background` (default 237, dark unless set by the user) and `seoul256-alternate-background` (default 253, light unless set by the user), but you could set them to anything of your choice. For example, perhaps you don't like light variants, but want to switch between the darkest and lightest contrasts of the dark theme. You could do the following:
+
+```el
+(setq seoul256-background 233
+      seoul256-alternate-background 239)
+(load-theme 'seoul256 t)
+```
+
+Then switch using <kbd>M-x</kbd> `seoul256-switch-background`.
 
 ### Overriding Default Colors
 If you don't like the default colors, you can override them by defining new colors in `seoul256-override-colors-alist` variable before loading the theme:
