@@ -50,7 +50,7 @@ Like the original, this port offers different background colors. To change the b
 ```
 The variant of the theme (dark or light) is determined by this variable. Dark variants range from 233 to 239 and light variants range from 252 to 256. By default, the theme uses a dark variant. 
 
-### Auto-switching
+### Background-switching
 Sometimes, it is beneficial to be able to switch between two variants of the theme using a key binding. For this purpose, this theme offers an interactive function `seoul256-switch-background` that switches between `seoul256-background` (default 237, dark unless set by the user) and `seoul256-alternate-background` (default 253, light unless set by the user), but you could set them to anything of your choice. For example, perhaps you don't like light variants, but want to switch between the darkest and lightest contrasts of the dark theme. You could do the following:
 
 ```el
