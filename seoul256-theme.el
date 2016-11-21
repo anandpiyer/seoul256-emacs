@@ -6,7 +6,7 @@
 ;; Maintainer: Anand Iyer <anand.ucb@gmail.com>
 ;; URL: http://github.com/anandpiyer/seoul256-emacs
 ;; Created: 21 October 2016
-;; Version: 0.2.0
+;; Version: 0.3.0
 ;; Keywords: theme
 ;; Package-Requires: ((emacs "24.3"))
 
@@ -146,6 +146,7 @@
      `(cursor             ((t (:background ,(hex light-bg dark-bg)))))
      `(default            ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
      `(fringe             ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (- dark-bg 1) (- light-bg 1))))))
+     `(header-line        ((t (:foreground ,(hex 181 88)))))
      `(highlight          ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
      `(hl-line            ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
      `(isearch            ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
@@ -153,6 +154,7 @@
      `(link               ((t (:foreground ,(hex 73 23)))))
      `(link-visited       ((t (:foreground ,(hex 72 22)))))
      `(linum              ((t (:foreground ,(hex 101 101) :background ,(hex (+ dark-bg 1) (- light-bg 2))))))
+     `(match              ((t (:foreground ,(hex dark-fg 255) :background ,(hex 24 74)))))
      `(minibuffer-prompt  ((t (:foreground ,(hex 173 173) :weight bold))))
      `(region             ((t (:background ,(hex 23 152)))))
  
@@ -174,12 +176,12 @@
      `(ido-first-match  ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
 
      ;; mode-line
-     `(mode-line            ((t (:foreground ,(hex 187 187) :background ,(hex 95 95)))))
+     `(mode-line            ((t (:foreground ,(hex 187 187) :background ,(hex 95 95) :height 0.95))))
      `(mode-line-buffer-id  ((t (:foreground ,(hex 230 230)))))
-     `(mode-line-emphasis   ((t (:foreground ,(hex 256 256)))))
+     `(mode-line-emphasis   ((t (:foreground ,(hex 256 256) :slant italic))))
      `(mode-line-highlight  ((t (:foreground ,(hex 228 228)))))
      `(mode-line-inactive   ((t (:foreground ,(hex (+ dark-bg 2) (- light-bg 2)) :background ,(hex 238 238)))))
-
+     
      ;; show-paren
      `(show-paren-match     ((t (:foreground ,(hex 226 200) :background ,(hex (+ dark-bg 1) (- light-bg 3)) :weight bold :underline t))))
      `(show-paren-mismatch  ((t (:foreground ,(hex 226 226) :background ,(hex 196 196) :weight bold))))
@@ -208,16 +210,37 @@
      `(git-gutter:deleted   ((t (:foreground ,(hex 161 161) :background ,(hex (+ dark-bg 1) (- light-bg 2)) :weight bold))))
      `(git-gutter:modified  ((t (:foreground ,(hex 68 68) :background ,(hex (+ dark-bg 1) (- light-bg 2)) :weight bold))))
 
-     ;; ivy
-     `(ivy-current-match            ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
-     `(ivy-minibuffer-match-face-1  ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
-     `(ivy-minibuffer-match-face-2  ((t (:background ,(hex 22 150)))))
-     `(ivy-minibuffer-match-face-3  ((t (:background ,(hex 23 151)))))
-     `(ivy-minibuffer-match-face-4  ((t (:background ,(hex 24 152)))))
+     ;; helm
+     `(helm-buffer-directory    ((t (:foreground ,(hex 66 116)))))
+     `(helm-buffer-file         ((t (:foreground ,(hex 108 66)))))
+     `(helm-buffer-not-saved    ((t (:foreground ,(hex 16 16)))))
+     `(helm-buffer-process      ((t (:foreground ,(hex (+ dark-bg 9) (- light-bg 9))))))
+     `(helm-buffer-saved-out    ((t (:foreground ,(hex 16 16)))))
+     `(helm-buffer-size         ((t (:inherit helm-buffer-process))))
+     `(helm-candidate-number    ((t (:background unspecified))))
+     `(helm-ff-directory        ((t (:foreground ,(hex 66 16)))))
+     `(helm-ff-file             ((t (:foreground ,(hex 108 66)))))
+     `(helm-ff-symlink          ((t (:foreground ,(hex 73 23)))))
+     `(helm-ff-invalid-symlink  ((t (:inherit helm-ff-symlink :underline (:style wave)))))
+     `(helm-ff-prefix           ((t (:foreground ,(hex 66 16)))))
+     `(helm-match               ((t (:inherit match))))
+     `(helm-source-header       ((t (:foreground ,(hex 181 88) :weight bold))))
+     `(helm-selection           ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
+     `(helm-selection-line      ((t (:inherit helm-selection))))
 
-     ;; linum-relative and nlinenum
+     ;; highlight-indent-guides
+     `(highlight-indent-guides-odd-face  ((t (:background ,(hex (- dark-bg 1) (+ light-bg 1))))))
+     `(highlight-indent-guides-even-face ((t (:background ,(hex (+ dark-bg 1) (- light-bg 1))))))
+     
+     ;; ivy
+     `(ivy-current-match            ((t (:foreground unspecified :background ,(hex (+ dark-bg 3) (- light-bg 3))))))
+     `(ivy-minibuffer-match-face-1  ((t (:inherit ivy-current-match))))
+     `(ivy-minibuffer-match-face-2  ((t (:inherit match))))
+     `(ivy-minibuffer-match-face-3  ((t (:inherit ivy-minibuffer-match-face-2))))
+     `(ivy-minibuffer-match-face-4  ((t (:inherit ivy-minibuffer-match-face-2))))
+
+     ;; linum-relative
      `(linum-relative-current-face   ((t (:foreground ,(hex 131 131) :background ,(hex (- dark-bg 1) (- light-bg 1)) :weight bold))))
-     `(nlinum-relative-current-face  ((t (:foreground ,(hex 131 131) :background ,(hex (- dark-bg 1) (- light-bg 1)) :weight bold))))
 
      ;; smart-mode-line
      `(sml/filename ((t (:foreground ,(hex 187 230) :weight bold))))
