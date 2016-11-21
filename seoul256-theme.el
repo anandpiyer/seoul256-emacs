@@ -6,7 +6,7 @@
 ;; Maintainer: Anand Iyer <anand.ucb@gmail.com>
 ;; URL: http://github.com/anandpiyer/seoul256-emacs
 ;; Created: 21 October 2016
-;; Version: 0.3.0
+;; Version: 0.3.1
 ;; Keywords: theme
 ;; Package-Requires: ((emacs "24.3"))
 
