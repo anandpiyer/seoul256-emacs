@@ -142,33 +142,34 @@
      ;;;; in-built
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      ;; basic ui
-     '(button             ((t (:underline t))))
-     `(cursor             ((t (:background ,(hex light-bg dark-bg)))))
-     `(default            ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
-     `(fringe             ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (- dark-bg 1) (- light-bg 1))))))
-     `(header-line        ((t (:foreground ,(hex 181 88)))))
-     `(highlight          ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
-     `(hl-line            ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
-     `(isearch            ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
-     `(isearch-fail       ((t (:foreground ,(hex 196 196) :background ,(hex (+ dark-bg 3) 253)))))
-     `(link               ((t (:foreground ,(hex 73 23)))))
-     `(link-visited       ((t (:foreground ,(hex 72 22)))))
-     `(linum              ((t (:foreground ,(hex 101 101) :background ,(hex (+ dark-bg 1) (- light-bg 2))))))
-     `(match              ((t (:foreground ,(hex dark-fg 255) :background ,(hex 24 74)))))
-     `(minibuffer-prompt  ((t (:foreground ,(hex 173 173) :weight bold))))
-     `(region             ((t (:background ,(hex 23 152)))))
- 
+     '(button                       ((t (:underline t))))
+     `(cursor                       ((t (:background ,(hex light-bg dark-bg)))))
+     `(default                      ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
+     `(fringe                       ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (- dark-bg 1) (- light-bg 1))))))
+     `(header-line                  ((t (:foreground ,(hex 256 16)))))
+     `(highlight                    ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
+     `(hl-line                      ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
+     `(isearch                      ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
+     `(isearch-lazy-highlight-face  ((t (:inherit match))))
+     `(isearch-fail                 ((t (:foreground ,(hex 196 196) :background ,(hex (+ dark-bg 3) 253)))))
+     `(link                         ((t (:foreground ,(hex 73 23)))))
+     `(link-visited                 ((t (:foreground ,(hex 72 22)))))
+     `(linum                        ((t (:foreground ,(hex 101 101) :background ,(hex (+ dark-bg 1) (- light-bg 2))))))
+     `(match                        ((t (:foreground ,(hex dark-fg 255) :background ,(hex 24 74)))))
+     `(minibuffer-prompt            ((t (:foreground ,(hex 74 24) :weight bold))))
+     `(region                       ((t (:background ,(hex 23 152)))))
+
      ;; font-lock
-     `(font-lock-builtin-face            ((t (:foreground ,(hex 217 96) :weight bold))))
+     `(font-lock-builtin-face            ((t (:foreground ,(hex 179 94)))))
      `(font-lock-comment-delimiter-face  ((t (:foreground ,(hex 65 65)))))
      `(font-lock-comment-face            ((t (:foreground ,(hex 65 65)))))
-     `(font-lock-constant-face           ((t (:foreground ,(hex 73 30)))))
-     `(font-lock-doc-face                ((t (:foreground ,(hex 109 30) :slant italic))))
+     `(font-lock-constant-face           ((t (:foreground ,(hex 73 23)))))
+     `(font-lock-doc-face                ((t (:inherit font-lock-comment-face))))
      `(font-lock-function-name-face      ((t (:foreground ,(hex 187 58)))))
-     `(font-lock-keyword-face            ((t (:foreground ,(hex 108 66) :weight bold))))
+     `(font-lock-keyword-face            ((t (:foreground ,(hex 168 168)))))
      `(font-lock-preprocessor-face       ((t (:foreground ,(hex 143 58)))))
      `(font-lock-string-face             ((t (:foreground ,(hex 109 30)))))
-     `(font-lock-type-face               ((t (:foreground ,(hex 179 94)))))
+     `(font-lock-type-face               ((t (:foreground ,(hex 217 96)))))
      `(font-lock-variable-name-face      ((t (:foreground ,(hex 173 131)))))
      `(font-lock-warning-face            ((t (:foreground ,(hex 52 174) :weight bold))))
 
@@ -181,10 +182,10 @@
      `(mode-line-emphasis   ((t (:foreground ,(hex 256 256) :slant italic))))
      `(mode-line-highlight  ((t (:foreground ,(hex 228 228)))))
      `(mode-line-inactive   ((t (:foreground ,(hex (+ dark-bg 2) (- light-bg 2)) :background ,(hex 238 238)))))
-     
+
      ;; show-paren
      `(show-paren-match     ((t (:foreground ,(hex 226 200) :background ,(hex (+ dark-bg 1) (- light-bg 3)) :weight bold :underline t))))
-     `(show-paren-mismatch  ((t (:foreground ,(hex 226 226) :background ,(hex 196 196) :weight bold))))
+     `(show-paren-mismatch  ((t (:foreground ,(hex 226 226) :background ,(hex 196 196)) :weight bold)))
 
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      ;;;; package-specific
@@ -198,11 +199,11 @@
      `(company-tooltip                       ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (+ dark-bg 2) (- light-bg 2))))))
      `(company-tooltip-annotation            ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (+ dark-bg 2) (- light-bg 2))))))
      `(company-tooltip-annotation-selection  ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (+ dark-bg 2) (- light-bg 2))))))
-     `(company-tooltip-common                ((t (:foreground ,(hex 226 32) :weight bold :underline t))))
-     `(company-tooltip-common-selection      ((t (:foreground ,(hex 226 32) :weight bold :underline t))))
+     `(company-tooltip-common                ((t (:foreground ,(hex 226 32)))))
+     `(company-tooltip-common-selection      ((t (:inherit company-tooltip-common))))
      `(company-tooltip-mouse                 ((t (:foreground ,(hex 226 32)))))
      `(company-tooltip-search                ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
-     `(company-tooltip-search-selection      ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
+     `(company-tooltip-search-selection      ((t (:inherit company-tooltip-search))))
      `(company-tooltip-selection             ((t (:foreground ,(hex 226 32) :background ,(hex 23 152)))))
 
      ;; git-gutter
@@ -218,20 +219,20 @@
      `(helm-buffer-saved-out    ((t (:foreground ,(hex 16 16)))))
      `(helm-buffer-size         ((t (:inherit helm-buffer-process))))
      `(helm-candidate-number    ((t (:background unspecified))))
-     `(helm-ff-directory        ((t (:foreground ,(hex 66 16)))))
+     `(helm-ff-directory        ((t (:foreground ,(hex 66 116)))))
      `(helm-ff-file             ((t (:foreground ,(hex 108 66)))))
      `(helm-ff-symlink          ((t (:foreground ,(hex 73 23)))))
      `(helm-ff-invalid-symlink  ((t (:inherit helm-ff-symlink :underline (:style wave)))))
      `(helm-ff-prefix           ((t (:foreground ,(hex 66 16)))))
      `(helm-match               ((t (:inherit match))))
-     `(helm-source-header       ((t (:foreground ,(hex 181 88) :weight bold))))
-     `(helm-selection           ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
+     `(helm-source-header       ((t (:foreground ,(hex 168 168) :weight bold))))
+     `(helm-selection           ((t (:foreground unspecified :background ,(hex (+ dark-bg 3) (- light-bg 3))))))
      `(helm-selection-line      ((t (:inherit helm-selection))))
 
      ;; highlight-indent-guides
      `(highlight-indent-guides-odd-face  ((t (:background ,(hex (- dark-bg 1) (+ light-bg 1))))))
      `(highlight-indent-guides-even-face ((t (:background ,(hex (+ dark-bg 1) (- light-bg 1))))))
-     
+
      ;; ivy
      `(ivy-current-match            ((t (:foreground unspecified :background ,(hex (+ dark-bg 3) (- light-bg 3))))))
      `(ivy-minibuffer-match-face-1  ((t (:inherit ivy-current-match))))
@@ -244,7 +245,7 @@
 
      ;; smart-mode-line
      `(sml/filename ((t (:foreground ,(hex 187 230) :weight bold))))
- 
+
      ;; smart-parens
      `(sp-pair-overlay-face        ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
      `(sp-wrap-overlay-face        ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
