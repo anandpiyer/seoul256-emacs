@@ -1,5 +1,5 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=plastic)](https://github.com/anandpiyer/seoul256-emacs/blob/master/LICENSE) [![MELPA](https://melpa.org/packages/seoul256-theme-badge.svg)](https://melpa.org/#/seoul256-theme)
-#Seoul256 for Emacs 
+# Seoul256 for Emacs 
 
 Seoul256 for Emacs is an Emacs theme port of [**seoul256 color scheme for vim**](https://github.com/junegunn/seoul256.vim/) by Junegunn Choi. This is a work in progress.
 
