@@ -6,7 +6,7 @@
 ;; Maintainer: Anand Iyer <anand.ucb@gmail.com>
 ;; URL: http://github.com/anandpiyer/seoul256-emacs
 ;; Created: 21 October 2016
-;; Version: 0.3.1
+;; Version: 0.3.2
 ;; Keywords: theme
 ;; Package-Requires: ((emacs "24.3"))
 
@@ -149,7 +149,7 @@
      `(header-line                  ((t (:foreground ,(hex 256 16)))))
      `(highlight                    ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
      `(hl-line                      ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
-     `(isearch                      ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
+     `(isearch                      ((t (:foreground ,(hex 220 125) :background ,(hex (+ dark-bg 1) 238)))))
      `(isearch-lazy-highlight-face  ((t (:inherit match))))
      `(isearch-fail                 ((t (:foreground ,(hex 196 196) :background ,(hex (+ dark-bg 3) 253)))))
      `(link                         ((t (:foreground ,(hex 73 23)))))
@@ -174,7 +174,7 @@
      `(font-lock-warning-face            ((t (:foreground ,(hex 52 174) :weight bold))))
 
      ;; ido-mode
-     `(ido-first-match  ((t (:foreground ,(hex 220 220) :background ,(hex (+ dark-bg 1) 238)))))
+     `(ido-first-match  ((t (:inherit isearch))))
 
      ;; mode-line
      `(mode-line            ((t (:foreground ,(hex 187 187) :background ,(hex 95 95) :height 0.95))))
@@ -224,9 +224,11 @@
      `(helm-ff-symlink          ((t (:foreground ,(hex 73 23)))))
      `(helm-ff-invalid-symlink  ((t (:inherit helm-ff-symlink :underline (:style wave)))))
      `(helm-ff-prefix           ((t (:foreground ,(hex 66 16)))))
-     `(helm-match               ((t (:inherit match))))
+     ;;`(helm-match               ((t (:inherit isearch))))
+     ;;`(helm-match               ((t (:foreground ,(hex 65 65)))))
+     ;;`(helm-match-item          ((t (:foreground ,(hex 108 66) :weight bold))))
      `(helm-source-header       ((t (:foreground ,(hex 168 168) :weight bold))))
-     `(helm-selection           ((t (:foreground unspecified :background ,(hex (+ dark-bg 3) (- light-bg 3))))))
+     `(helm-selection           ((t (:inherit hl-line))))
      `(helm-selection-line      ((t (:inherit helm-selection))))
 
      ;; highlight-indent-guides
@@ -234,11 +236,11 @@
      `(highlight-indent-guides-even-face ((t (:background ,(hex (+ dark-bg 1) (- light-bg 1))))))
 
      ;; ivy
-     `(ivy-current-match            ((t (:foreground unspecified :background ,(hex (+ dark-bg 3) (- light-bg 3))))))
+     `(ivy-current-match            ((t (:inherit hl-line))))
      `(ivy-minibuffer-match-face-1  ((t (:inherit ivy-current-match))))
-     `(ivy-minibuffer-match-face-2  ((t (:inherit match))))
-     `(ivy-minibuffer-match-face-3  ((t (:inherit ivy-minibuffer-match-face-2))))
-     `(ivy-minibuffer-match-face-4  ((t (:inherit ivy-minibuffer-match-face-2))))
+     `(ivy-minibuffer-match-face-2  ((t (:inherit isearch))))
+     `(ivy-minibuffer-match-face-3  ((t (:inherit isearch))))
+     `(ivy-minibuffer-match-face-4  ((t (:inherit isearch))))
 
      ;; linum-relative
      `(linum-relative-current-face   ((t (:foreground ,(hex 131 131) :background ,(hex (- dark-bg 1) (- light-bg 1)) :weight bold))))
