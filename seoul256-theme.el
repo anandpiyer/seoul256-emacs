@@ -236,11 +236,15 @@
      `(highlight-indent-guides-even-face ((t (:background ,(hex (+ dark-bg 1) (- light-bg 1))))))
 
      ;; ivy
-     `(ivy-current-match            ((t (:inherit hl-line))))
+     `(ivy-current-match            ((t (:inherit match))))
      `(ivy-minibuffer-match-face-1  ((t (:inherit ivy-current-match))))
      `(ivy-minibuffer-match-face-2  ((t (:inherit isearch))))
      `(ivy-minibuffer-match-face-3  ((t (:inherit isearch))))
      `(ivy-minibuffer-match-face-4  ((t (:inherit isearch))))
+     `(ivy-confirm-face             ((t (:inherit ivy-current-match))))
+     `(ivy-match-required-face      ((t (:inherit ivy-current-match))))
+     `(ivy-remote                   ((t (:inherit ivy-current-match))))
+     `(ivy-subdir                   ((t (:inherit ivy-current-match))))
 
      ;; linum-relative
      `(linum-relative-current-face   ((t (:foreground ,(hex 131 131) :background ,(hex (- dark-bg 1) (- light-bg 1)) :weight bold))))
