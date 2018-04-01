@@ -186,7 +186,7 @@
      `(mode-line-buffer-id  ((t (:foreground ,(hex 230 230)))))
      `(mode-line-emphasis   ((t (:foreground ,(hex 256 256) :weight bold))))
      `(mode-line-highlight  ((t (:foreground ,(hex 228 228)))))
-     `(mode-line-inactive   ((t (:foreground ,(hex (+ dark-bg 2) (- light-bg 2)) :background ,(hex 238 238)))))
+     `(mode-line-inactive   ((t (:foreground ,(hex (+ dark-bg 10) (- light-bg 10)) :background ,(hex (+ dark-bg 2) (- light-bg 2))))))
 
      ;; show-paren
      `(show-paren-match     ((t (:foreground ,(hex 226 200) :background ,(hex (+ dark-bg 3) (- light-bg 3)) :weight bold))))
