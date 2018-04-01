@@ -6,7 +6,8 @@
 ;; Maintainer: Anand Iyer <anand.ucb@gmail.com>
 ;; URL: http://github.com/anandpiyer/seoul256-emacs
 ;; Created: 21 October 2016
-;; Version: 0.3.2
+;; Modified: 31 March 2018
+;; Version: 0.3.3
 ;; Keywords: theme
 ;; Package-Requires: ((emacs "24.3"))
 
@@ -176,16 +177,20 @@
      ;; ido-mode
      `(ido-first-match  ((t (:inherit isearch))))
 
+     ;; line number
+     `(line-number               ((t (:foreground ,(hex (+ dark-bg 2) (- light-bg 2))))))
+     `(line-number-current-line  ((t (:inherit hl-line :foreground ,(hex 101 101) :weight bold))))
+
      ;; mode-line
-     `(mode-line            ((t (:foreground ,(hex 187 187) :background ,(hex 95 95) :height 0.95))))
+     `(mode-line            ((t (:foreground ,(hex 187 187) :background ,(hex 95 95)))))
      `(mode-line-buffer-id  ((t (:foreground ,(hex 230 230)))))
-     `(mode-line-emphasis   ((t (:foreground ,(hex 256 256) :slant italic))))
+     `(mode-line-emphasis   ((t (:foreground ,(hex 256 256) :weight bold))))
      `(mode-line-highlight  ((t (:foreground ,(hex 228 228)))))
      `(mode-line-inactive   ((t (:foreground ,(hex (+ dark-bg 2) (- light-bg 2)) :background ,(hex 238 238)))))
 
      ;; show-paren
-     `(show-paren-match     ((t (:foreground ,(hex 226 200) :background ,(hex (+ dark-bg 1) (- light-bg 3)) :weight bold :underline t))))
-     `(show-paren-mismatch  ((t (:foreground ,(hex 226 226) :background ,(hex 196 196)) :weight bold)))
+     `(show-paren-match     ((t (:foreground ,(hex 226 200) :background ,(hex (+ dark-bg 3) (- light-bg 3)) :weight bold))))
+     `(show-paren-mismatch  ((t (:foreground ,(hex 196 196) :inherit unspecified :strike-through t :weight bold))))
 
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      ;;;; package-specific
@@ -207,9 +212,9 @@
      `(company-tooltip-selection             ((t (:foreground ,(hex 226 32) :background ,(hex 23 152)))))
 
      ;; git-gutter
-     `(git-gutter:added     ((t (:foreground ,(hex 108 65) :background ,(hex (+ dark-bg 1) (- light-bg 2)) :weight bold))))
-     `(git-gutter:deleted   ((t (:foreground ,(hex 161 161) :background ,(hex (+ dark-bg 1) (- light-bg 2)) :weight bold))))
-     `(git-gutter:modified  ((t (:foreground ,(hex 68 68) :background ,(hex (+ dark-bg 1) (- light-bg 2)) :weight bold))))
+     `(git-gutter:added     ((t (:foreground ,(hex 108 65) :background ,(hex (+ dark-bg 1) (- light-bg 2))))))
+     `(git-gutter:deleted   ((t (:foreground ,(hex 161 161) :background ,(hex (+ dark-bg 1) (- light-bg 2))))))
+     `(git-gutter:modified  ((t (:foreground ,(hex 68 68) :background ,(hex (+ dark-bg 1) (- light-bg 2))))))
 
      ;; helm
      `(helm-buffer-directory    ((t (:foreground ,(hex 66 116)))))
@@ -247,20 +252,34 @@
      `(ivy-subdir                   ((t (:inherit ivy-current-match))))
 
      ;; linum-relative
-     `(linum-relative-current-face   ((t (:foreground ,(hex 131 131) :background ,(hex (- dark-bg 1) (- light-bg 1)) :weight bold))))
+     `(linum-relative-current-face  ((t (:inherit line-number-current-line))))
+
+     ;; nlinum
+     `(nlinum-current-line  ((t (:inherit line-number-current-line))))
+
+     ;; nlinum-hl
+     `(nlinum-hl-face ((t (:inherit line-number-current-line))))
+
+     ;; nlinum-relative
+     `(nlinum-relative-current-face ((t (:inherit line-number-current-line))))
+
+     ;; rainbow-delimiters
+     `(rainbow-delimiters-unmatched-face ((t (:inherit show-paren-mismatch))))
 
      ;; smart-mode-line
      `(sml/filename ((t (:foreground ,(hex 187 230) :weight bold))))
 
      ;; smart-parens
-     `(sp-pair-overlay-face        ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
-     `(sp-wrap-overlay-face        ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
-     `(sp-wrap-tag-overlay-face    ((t (:background ,(hex (+ dark-bg 3) (- light-bg 3))))))
-     `(sp-show-pair-match-face     ((t (:foreground ,(hex 226 200) :background ,(hex (+ dark-bg 1) (- light-bg 3)) :weight bold))))
-     `(sp-show-pair-mismatch-face  ((t (:foreground ,(hex 226 226) :background ,(hex 196 196) :weight bold)))))))
+     `(sp-pair-overlay-face        ((t (:inherit region))))
+     `(sp-show-pair-match-face     ((t (:inherit show-paren-match))))
+     `(sp-show-pair-mismatch-face  ((t (:inherit show-paren-mismatch))))
+
+     ;; solaire-mode
+     `(solaire-default-face  ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
+     `(solaire-hl-line-face  ((t (:background ,(hex (- dark-bg 2) (- light-bg 2)))))))))
 
 (defun seoul256-create (theme background)
-  "Create a seoul256 theme THEME using a given BACKGROUND."
+  "Create a seoul256 theme `THEME' using a given `BACKGROUND'."
   (let ((dark-bg 237)
         (light-bg 253)
         (dark-fg 252)
