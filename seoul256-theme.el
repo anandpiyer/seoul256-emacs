@@ -6,8 +6,8 @@
 ;; Maintainer: Anand Iyer <anand.ucb@gmail.com>
 ;; URL: http://github.com/anandpiyer/seoul256-emacs
 ;; Created: 21 October 2016
-;; Modified: 31 March 2018
-;; Version: 0.3.3
+;; Modified: 05 April 2018
+;; Version: 0.3.4
 ;; Keywords: theme
 ;; Package-Requires: ((emacs "24.3"))
 
@@ -68,55 +68,86 @@
 (deftheme seoul256 "Low-contrast color scheme based on Seoul Colors")
 
 (defvar seoul256-default-colors-alist
-  '((16 . "#000000") (17 . "#0C0077") (18 . "#14009F") (19 . "#1B00C5") (20 . "#2200E8") (21 .
-    "#2900FF") (22 . "#007600") (23 . "#007475") (24 . "#00739E") (25 . "#0071C3") (26 .
-    "#006EE7") (27 . "#006BFF") (28 . "#009E00") (29 . "#009D72") (30 . "#009C9C") (31 .
-    "#009AC2") (32 . "#0098E6") (33 . "#0096FF") (34 . "#00C300") (35 . "#00C26F") (36 .
-    "#00C19A") (37 . "#00C0C1") (38 . "#00BFE5") (39 . "#00BDFF") (40 . "#00E600") (41 .
-    "#00E56B") (42 . "#00E497") (43 . "#00E3BF") (44 . "#00E2E3") (45 . "#00E1FF") (46 .
-    "#00FF00") (47 . "#00FF66") (48 . "#00FF94") (49 . "#00FFBC") (50 . "#00FFE1") (51 .
-    "#00FFFF") (52 . "#7F0000") (53 . "#800075") (54 . "#81009E") (55 . "#8200C3") (56 .
-    "#8300E7") (57 . "#8500FF") (58 . "#717400") (59 . "#727272") (60 . "#73709C") (61 .
-    "#746EC2") (62 . "#766CE6") (63 . "#7868FF") (64 . "#629C00") (65 . "#639B6F") (66 .
-    "#649A9A") (67 . "#6698C1") (68 . "#6897E5") (69 . "#6A95FF") (70 . "#49C200") (71 .
-    "#4BC16C") (72 . "#4DC098") (73 . "#4FBFBF") (74 . "#52BDE3") (75 . "#54BCFF") (76 .
-    "#07E500") (77 . "#12E468") (78 . "#18E395") (79 . "#1EE2BD") (80 . "#25E1E2") (81 .
-    "#2BE0FF") (82 . "#00FF00") (83 . "#00FF63") (84 . "#00FF92") (85 . "#00FFBB") (86 .
-    "#00FFE0") (87 . "#00FFFF") (88 . "#AA0000") (89 . "#AA0072") (90 . "#AB009C") (91 .
-    "#AC00C2") (92 . "#AD00E6") (93 . "#AE00FF") (94 . "#A07200") (95 . "#A1706F") (96 .
-    "#A16E9A") (97 . "#A26CC1") (98 . "#A369E5") (99 . "#A566FF") (100 . "#979B00") (101 .
-    "#989A6D") (102 . "#989898") (103 . "#9997BF") (104 . "#9A95E4") (105 . "#9C93FF") (106 .
-    "#8AC000") (107 . "#8BC06A") (108 . "#8CBF96") (109 . "#8DBEBE") (110 . "#8EBCE2") (111 .
-    "#90BBFF") (112 . "#79E400") (113 . "#7AE365") (114 . "#7BE294") (115 . "#7CE1BC") (116 .
-    "#7DE0E1") (117 . "#7FDFFF") (118 . "#5FFF00") (119 . "#60FF60") (120 . "#62FF90") (121 .
-    "#63FFBA") (122 . "#65FFDF") (123 . "#67FFFF") (124 . "#D10000") (125 . "#D2006F") (126 .
-    "#D2009A") (127 . "#D300C1") (128 . "#D300E5") (129 . "#D400FF") (130 . "#CA6F00") (131 .
-    "#CA6D6C") (132 . "#CB6B98") (133 . "#CC69BF") (134 . "#CC66E3") (135 . "#CD63FF") (136 .
-    "#C39900") (137 . "#C4986A") (138 . "#C49796") (139 . "#C595BE") (140 . "#C693E2") (141 .
-    "#C791FF") (142 . "#BABF00") (143 . "#BBBE66") (144 . "#BCBD94") (145 . "#BCBCBC") (146 .
-    "#BDBBE1") (147 . "#BEB9FF") (148 . "#AFE300") (149 . "#B0E262") (150 . "#B0E191") (151 .
-    "#B1E0BA") (152 . "#B2DFE0") (153 . "#B3DEFF") (154 . "#A0FF00") (155 . "#A1FF5C") (156 .
-    "#A2FF8E") (157 . "#A2FFB8") (158 . "#A3FFDE") (159 . "#A5FFFF") (160 . "#F60000") (161 .
-    "#F7006B") (162 . "#F70097") (163 . "#F800BF") (164 . "#F800E3") (165 . "#F900FF") (166 .
-    "#F16C00") (167 . "#F16A68") (168 . "#F16895") (169 . "#F265BD") (170 . "#F363E2") (171 .
-    "#F35FFF") (172 . "#EB9700") (173 . "#EC9565") (174 . "#EC9494") (175 . "#ED93BC") (176 .
-    "#ED91E1") (177 . "#EE8FFF") (178 . "#E4BD00") (179 . "#E5BC62") (180 . "#E5BC91") (181 .
-    "#E6BBBA") (182 . "#E7B9E0") (183 . "#E7B8FF") (184 . "#DCE100") (185 . "#DCE15D") (186 .
-    "#DDE08F") (187 . "#DDDFB8") (188 . "#DEDEDE") (189 . "#DFDDFF") (190 . "#D1FF00") (191 .
-    "#D2FF57") (192 . "#D2FF8B") (193 . "#D3FFB6") (194 . "#D4FFDC") (195 . "#D4FFFF") (196 .
-    "#FF0000") (197 . "#FF0066") (198 . "#FF0094") (199 . "#FF00BC") (200 . "#FF00E1") (201 .
-    "#FF00FF") (202 . "#FF6700") (203 . "#FF6563") (204 . "#FF6392") (205 . "#FF61BB") (206 .
-    "#FF5EE0") (207 . "#FF5AFF") (208 . "#FF9400") (209 . "#FF9360") (210 . "#FF9291") (211 .
-    "#FF90BA") (212 . "#FF8EDF") (213 . "#FF8CFF") (214 . "#FFBB00") (215 . "#FFBA5C") (216 .
-    "#FFBA8E") (217 . "#FFB9B8") (218 . "#FFB7DE") (219 . "#FFB6FF") (220 . "#FFE000") (221 .
-    "#FFDF57") (222 . "#FFDE8B") (223 . "#FFDDB6") (224 . "#FFDCDC") (225 . "#FFDBFF") (226 .
-    "#FCFF00") (227 . "#FCFF51") (228 . "#FDFF88") (229 . "#FDFFB4") (230 . "#FEFFDA") (231 .
-    "#FEFEFE") (232 . "#060606") (233 . "#171717") (234 . "#252525") (235 . "#323232") (236 .
-    "#3F3F3F") (237 . "#4A4A4A") (238 . "#565656") (239 . "#606060") (240 . "#6B6B6B") (241 .
-    "#757575") (242 . "#7F7F7F") (243 . "#888888") (244 . "#929292") (245 . "#9B9B9B") (246 .
-    "#A4A4A4") (247 . "#ADADAD") (248 . "#B6B6B6") (249 . "#BFBFBF") (250 . "#C7C7C7") (251 .
-    "#D0D0D0") (252 . "#D8D8D8") (253 . "#E0E0E0") (254 . "#E9E9E9") (255 . "#F1F1F1") (256 .
-    "#FFFFFF")))
+  '((16 . "#000000")  (17 . "#00005F")  (18 . "#000087")
+    (19 . "#0000AF")  (20 . "#0000D7")  (21 . "#0000FF")
+    (22 . "#006F00")  (23 . "#007173")  (24 . "#007299")
+    (25 . "#0074BE")  (26 . "#005FD7")  (27 . "#005FFF")
+    (28 . "#008700")  (29 . "#00875F")  (30 . "#009799")
+    (31 . "#0099BD")  (32 . "#0087D7")  (33 . "#0087FF")
+    (34 . "#00AF00")  (35 . "#00AF5F")  (36 . "#00AF87")
+    (37 . "#00AFAF")  (38 . "#00BDDF")  (39 . "#00AFFF")
+    (40 . "#00D700")  (41 . "#00D75F")  (42 . "#00D787")
+    (43 . "#00D7AF")  (44 . "#00D7D7")  (45 . "#00D7FF")
+    (46 . "#00FF00")  (47 . "#00FF5F")  (48 . "#00FF87")
+    (49 . "#00FFAF")  (50 . "#00FFD7")  (51 . "#00FFFF")
+    (52 . "#730B00")  (53 . "#5F005F")  (54 . "#5F0087")
+    (55 . "#5F00AF")  (56 . "#5F00D7")  (57 . "#5F00FF")
+    (58 . "#727100")  (59 . "#727272")  (60 . "#5F5F87")
+    (61 . "#5F5FAF")  (62 . "#5F5FD7")  (63 . "#5F5FFF")
+    (64 . "#5F8700")  (65 . "#719872")  (66 . "#719899")
+    (67 . "#7299BC")  (68 . "#719CDF")  (69 . "#5F87FF")
+    (70 . "#5FAF00")  (71 . "#5FAF5F")  (72 . "#5FAF87")
+    (73 . "#6FBCBD")  (74 . "#70BDDF")  (75 . "#5FAFFF")
+    (76 . "#5FD700")  (77 . "#5FD75F")  (78 . "#5FD787")
+    (79 . "#5FD7AF")  (80 . "#5FD7D7")  (81 . "#5FD7FF")
+    (82 . "#5FFF00")  (83 . "#5FFF5F")  (84 . "#5FFF87")
+    (85 . "#5FFFAF")  (86 . "#5FFFD7")  (87 . "#5FFFFF")
+    (88 . "#9B1300")  (89 . "#9B1D72")  (90 . "#870087")
+    (91 . "#8700AF")  (92 . "#8700D7")  (93 . "#8700FF")
+    (94 . "#9A7200")  (95 . "#9A7372")  (96 . "#9A7599")
+    (97 . "#875FAF")  (98 . "#875FD7")  (99 . "#875FFF")
+    (100 . "#878700") (101 . "#999872") (102 . "#878787")
+    (103 . "#999ABD") (104 . "#8787D7") (105 . "#8787FF")
+    (106 . "#87AF00") (107 . "#87AF5F") (108 . "#98BC99")
+    (109 . "#98BCBD") (110 . "#98BEDE") (111 . "#87AFFF")
+    (112 . "#87D700") (113 . "#87D75F") (114 . "#87D787")
+    (115 . "#87D7AF") (116 . "#97DDDF") (117 . "#87D7FF")
+    (118 . "#87FF00") (119 . "#87FF5F") (120 . "#87FF87")
+    (121 . "#87FFAF") (122 . "#87FFD7") (123 . "#87FFFF")
+    (124 . "#AF0000") (125 . "#BF2172") (126 . "#AF0087")
+    (127 . "#AF00AF") (128 . "#AF00D7") (129 . "#AF00FF")
+    (130 . "#AF5F00") (131 . "#BE7572") (132 . "#AF5F87")
+    (133 . "#AF5FAF") (134 . "#AF5FD7") (135 . "#AF5FFF")
+    (136 . "#AF8700") (137 . "#BE9873") (138 . "#AF8787")
+    (139 . "#AF87AF") (140 . "#AF87D7") (141 . "#AF87FF")
+    (142 . "#AFAF00") (143 . "#BDBB72") (144 . "#BDBC98")
+    (145 . "#BDBDBD") (146 . "#AFAFD7") (147 . "#AFAFFF")
+    (148 . "#AFD700") (149 . "#AFD75F") (150 . "#AFD787")
+    (151 . "#BCDDBD") (152 . "#BCDEDE") (153 . "#BCE0FF")
+    (154 . "#AFFF00") (155 . "#AFFF5F") (156 . "#AFFF87")
+    (157 . "#AFFFAF") (158 . "#AFFFD7") (159 . "#AFFFFF")
+    (160 . "#D70000") (161 . "#E12672") (162 . "#D70087")
+    (163 . "#D700AF") (164 . "#D700D7") (165 . "#D700FF")
+    (166 . "#D75F00") (167 . "#D75F5F") (168 . "#E17899")
+    (169 . "#D75FAF") (170 . "#D75FD7") (171 . "#D75FFF")
+    (172 . "#D78700") (173 . "#E19972") (174 . "#E09B99")
+    (175 . "#D787AF") (176 . "#D787D7") (177 . "#D787FF")
+    (178 . "#D7AF00") (179 . "#DFBC72") (180 . "#D7AF87")
+    (181 . "#E0BEBC") (182 . "#D7AFD7") (183 . "#D7AFFF")
+    (184 . "#DEDC00") (185 . "#D7D75F") (186 . "#DEDD99")
+    (187 . "#DFDEBD") (188 . "#D7D7D7") (189 . "#DFDFFF")
+    (190 . "#D7FF00") (191 . "#D7FF5F") (192 . "#D7FF87")
+    (193 . "#D7FFAF") (194 . "#D7FFD7") (195 . "#D7FFFF")
+    (196 . "#FF0000") (197 . "#FF005F") (198 . "#FF0087")
+    (199 . "#FF00AF") (200 . "#FF00D7") (201 . "#FF00FF")
+    (202 . "#FF5F00") (203 . "#FF5F5F") (204 . "#FF5F87")
+    (205 . "#FF5FAF") (206 . "#FF5FD7") (207 . "#FF5FFF")
+    (208 . "#FF8700") (209 . "#FF875F") (210 . "#FF8787")
+    (211 . "#FF87AF") (212 . "#FF87D7") (213 . "#FF87FF")
+    (214 . "#FFAF00") (215 . "#FFAF5F") (216 . "#FFBD98")
+    (217 . "#FFBFBD") (218 . "#FFC0DE") (219 . "#FFAFFF")
+    (220 . "#FFDD00") (221 . "#FFD75F") (222 . "#FFDE99")
+    (223 . "#FFD7AF") (224 . "#FFDFDF") (225 . "#FFD7FF")
+    (226 . "#FFFF00") (227 . "#FFFF5F") (228 . "#FFFF87")
+    (229 . "#FFFFAF") (230 . "#FFFFDF") (231 . "#FFFFFF")
+    (232 . "#060606") (233 . "#171717") (234 . "#252525")
+    (235 . "#333233") (236 . "#3F3F3F") (237 . "#4B4B4B")
+    (238 . "#565656") (239 . "#616161") (240 . "#6B6B6B")
+    (241 . "#757575") (242 . "#6C6C6C") (243 . "#767676")
+    (244 . "#808080") (245 . "#8A8A8A") (246 . "#949494")
+    (247 . "#9E9E9E") (248 . "#A8A8A8") (249 . "#BFBFBF")
+    (250 . "#C8C8C8") (251 . "#D1D0D1") (252 . "#D9D9D9")
+    (253 . "#E1E1E1") (254 . "#E9E9E9") (255 . "#F1F1F1")))
 
 (defvar seoul256-override-colors-alist
   '()
@@ -144,49 +175,59 @@
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      ;; basic ui
      '(button                       ((t (:underline t))))
-     `(cursor                       ((t (:background ,(hex light-bg dark-bg)))))
+     `(cursor                       ((t (:background ,(hex (- light-bg 1) (- dark-bg 1))))))
      `(default                      ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
-     `(fringe                       ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex (- dark-bg 1) (- light-bg 1))))))
+     `(fringe                       ((t (:inherit default))))
      `(header-line                  ((t (:foreground ,(hex 256 16)))))
-     `(highlight                    ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
+     `(highlight                    ((t (:foreground ,(hex (+ dark-bg 1) 238) :background ,(hex 220 220)))))
      `(hl-line                      ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
-     `(isearch                      ((t (:foreground ,(hex 220 125) :background ,(hex (+ dark-bg 1) 238)))))
-     `(isearch-lazy-highlight-face  ((t (:inherit match))))
-     `(isearch-fail                 ((t (:foreground ,(hex 196 196) :background ,(hex (+ dark-bg 3) 253)))))
      `(link                         ((t (:foreground ,(hex 73 23)))))
      `(link-visited                 ((t (:foreground ,(hex 72 22)))))
-     `(linum                        ((t (:foreground ,(hex 101 101) :background ,(hex (+ dark-bg 1) (- light-bg 2))))))
-     `(match                        ((t (:foreground ,(hex dark-fg 255) :background ,(hex 24 74)))))
+     `(match                        ((t (:foreground ,(hex dark-fg 255) :background ,(hex 24 74) :weight bold))))
      `(minibuffer-prompt            ((t (:foreground ,(hex 74 24) :weight bold))))
      `(region                       ((t (:background ,(hex 23 152)))))
 
      ;; font-lock
-     `(font-lock-builtin-face            ((t (:foreground ,(hex 179 94)))))
+     `(font-lock-builtin-face            ((t (:foreground ,(hex 187 58)))))
      `(font-lock-comment-delimiter-face  ((t (:foreground ,(hex 65 65)))))
      `(font-lock-comment-face            ((t (:foreground ,(hex 65 65)))))
-     `(font-lock-constant-face           ((t (:foreground ,(hex 73 23)))))
-     `(font-lock-doc-face                ((t (:inherit font-lock-comment-face))))
-     `(font-lock-function-name-face      ((t (:foreground ,(hex 187 58)))))
-     `(font-lock-keyword-face            ((t (:foreground ,(hex 168 168)))))
+     `(font-lock-constant-face           ((t (:foreground ,(hex 216 173)))))
+     `(font-lock-doc-face                ((t (:inherit font-lock-string-face))))
+     `(font-lock-function-name-face      ((t (:inherit font-lock-builtin-face))))
+     `(font-lock-keyword-face            ((t (:foreground ,(hex 108 66)))))
      `(font-lock-preprocessor-face       ((t (:foreground ,(hex 143 58)))))
      `(font-lock-string-face             ((t (:foreground ,(hex 109 30)))))
-     `(font-lock-type-face               ((t (:foreground ,(hex 217 96)))))
-     `(font-lock-variable-name-face      ((t (:foreground ,(hex 173 131)))))
-     `(font-lock-warning-face            ((t (:foreground ,(hex 52 174) :weight bold))))
+     `(font-lock-type-face               ((t (:foreground ,(hex 179 94)))))
+     `(font-lock-variable-name-face      ((t (:foreground ,(hex 217 96)))))
+     `(font-lock-warning-face            ((t (:foreground ,(hex 179 88)))))
+
+     ;; font-latex
+     `(font-latex-bold-face              ((t (:inherit bold))))
+     `(font-latex-string-face            ((t (:inherit font-lock-string-face))))
+     `(font-latex-italic-face            ((t (:foreground ,(hex 217 96) :slant italic))))
+     `(font-latex-sectioning-5-face      ((t (:foreground ,(hex 181 88)))))
 
      ;; ido-mode
      `(ido-first-match  ((t (:inherit isearch))))
 
+     ;; isearch
+     `(isearch         ((t (:foreground ,(hex (+ dark-bg 1) 238) :background ,(hex 220 220) :weight bold))))
+     `(lazy-highlight  ((t (:inherit match))))
+     `(isearch-fail    ((t (:background ,(hex 196 196) :foreground ,(hex (+ dark-bg 3) 253)))))
+
      ;; line number
-     `(line-number               ((t (:foreground ,(hex (+ dark-bg 2) (- light-bg 2))))))
-     `(line-number-current-line  ((t (:inherit hl-line :foreground ,(hex 101 101) :weight bold))))
+     `(line-number                 ((t (:foreground ,(hex 101 101) :background ,(hex (+ dark-bg 1) (- light-bg 2))))))
+     `(line-number-current-line    ((t (:foreground ,(hex 131 131) :background ,(hex (- dark-bg 1) (- light-bg 1))))))
+
+     ;; linum
+     `(linum    ((t (:inherit line-number))))
 
      ;; mode-line
-     `(mode-line            ((t (:foreground ,(hex 187 187) :background ,(hex 95 95)))))
+     `(mode-line            ((t (:foreground ,(hex 187 187) :background ,(hex 95 95) :box (:line-width -1 :style released-button)))))
      `(mode-line-buffer-id  ((t (:foreground ,(hex 230 230)))))
      `(mode-line-emphasis   ((t (:foreground ,(hex 256 256) :weight bold))))
-     `(mode-line-highlight  ((t (:foreground ,(hex 228 228)))))
-     `(mode-line-inactive   ((t (:foreground ,(hex (+ dark-bg 10) (- light-bg 10)) :background ,(hex (+ dark-bg 2) (- light-bg 2))))))
+     `(mode-line-highlight  ((t (:inherit highlight))))
+     `(mode-line-inactive   ((t (:foreground ,(hex (+ dark-bg 10) (- light-bg 10)) :background ,(hex (+ dark-bg 2) (- light-bg 2) ) :box (:line-width -1 :style released-button)))))
 
      ;; show-paren
      `(show-paren-match     ((t (:foreground ,(hex 226 200) :background ,(hex (+ dark-bg 3) (- light-bg 3)) :weight bold))))
@@ -217,24 +258,13 @@
      `(git-gutter:modified  ((t (:foreground ,(hex 68 68) :background ,(hex (+ dark-bg 1) (- light-bg 2))))))
 
      ;; helm
-     `(helm-buffer-directory    ((t (:foreground ,(hex 66 116)))))
-     `(helm-buffer-file         ((t (:foreground ,(hex 108 66)))))
-     `(helm-buffer-not-saved    ((t (:foreground ,(hex 16 16)))))
-     `(helm-buffer-process      ((t (:foreground ,(hex (+ dark-bg 9) (- light-bg 9))))))
-     `(helm-buffer-saved-out    ((t (:foreground ,(hex 16 16)))))
-     `(helm-buffer-size         ((t (:inherit helm-buffer-process))))
-     `(helm-candidate-number    ((t (:background unspecified))))
-     `(helm-ff-directory        ((t (:foreground ,(hex 66 116)))))
-     `(helm-ff-file             ((t (:foreground ,(hex 108 66)))))
-     `(helm-ff-symlink          ((t (:foreground ,(hex 73 23)))))
-     `(helm-ff-invalid-symlink  ((t (:inherit helm-ff-symlink :underline (:style wave)))))
-     `(helm-ff-prefix           ((t (:foreground ,(hex 66 16)))))
-     ;;`(helm-match               ((t (:inherit isearch))))
-     ;;`(helm-match               ((t (:foreground ,(hex 65 65)))))
-     ;;`(helm-match-item          ((t (:foreground ,(hex 108 66) :weight bold))))
-     `(helm-source-header       ((t (:foreground ,(hex 168 168) :weight bold))))
-     `(helm-selection           ((t (:inherit hl-line))))
-     `(helm-selection-line      ((t (:inherit helm-selection))))
+     `(helm-buffer-directory    ((t (:foreground ,(hex 187 95)))))
+     `(helm-buffer-file         ((t (:foreground ,(hex dark-fg light-fg)))))
+     `(helm-ff-directory        ((t (:inherit helm-buffer-directory))))
+     `(helm-ff-file             ((t (:inherit helm-buffer-file))))
+     `(helm-match                 ((t (:foreground ,(hex 74 24) :underline t))))
+     `(helm-source-header         ((t (:inherit hl-line :foreground ,(hex 95 95) :slant italic :weight bold))))
+     `(helm-selection             ((t (:inherit match))))
 
      ;; highlight-indent-guides
      `(highlight-indent-guides-odd-face  ((t (:background ,(hex (- dark-bg 1) (+ light-bg 1))))))
@@ -242,14 +272,10 @@
 
      ;; ivy
      `(ivy-current-match            ((t (:inherit match))))
-     `(ivy-minibuffer-match-face-1  ((t (:inherit ivy-current-match))))
-     `(ivy-minibuffer-match-face-2  ((t (:inherit isearch))))
-     `(ivy-minibuffer-match-face-3  ((t (:inherit isearch))))
-     `(ivy-minibuffer-match-face-4  ((t (:inherit isearch))))
-     `(ivy-confirm-face             ((t (:inherit ivy-current-match))))
-     `(ivy-match-required-face      ((t (:inherit ivy-current-match))))
-     `(ivy-remote                   ((t (:inherit ivy-current-match))))
-     `(ivy-subdir                   ((t (:inherit ivy-current-match))))
+     `(ivy-minibuffer-match-face-1  ((t (:foreground ,(hex 74 24) :underline t))))
+     `(ivy-minibuffer-match-face-2  ((t (:inherit ivy-minibuffer-match-face-1))))
+     `(ivy-minibuffer-match-face-3  ((t (:inherit ivy-minibuffer-match-face-1))))
+     `(ivy-minibuffer-match-face-4  ((t (:inherit ivy-minibuffer-match-face-1))))
 
      ;; linum-relative
      `(linum-relative-current-face  ((t (:inherit line-number-current-line))))
@@ -263,8 +289,15 @@
      ;; nlinum-relative
      `(nlinum-relative-current-face ((t (:inherit line-number-current-line))))
 
+     ;; powerline
+     `(powerline-active1     ((t (:inherit mode-line))))
+     `(powerline-active2     ((t (:inherit powerline-active1))))
+     `(powerline-inactive1   ((t (:inherit mode-line-inactive))))
+     `(powerline-inactive2   ((t (:inherit powerline-inactive1))))
+
      ;; rainbow-delimiters
      `(rainbow-delimiters-unmatched-face ((t (:inherit show-paren-mismatch))))
+     `(rainbow-delimiters-mismatched-face (( t (:inherit 'rainbow-delimiters-unmatched-face))))
 
      ;; smart-mode-line
      `(sml/filename ((t (:foreground ,(hex 187 230) :weight bold))))
