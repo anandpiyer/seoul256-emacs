@@ -1,6 +1,6 @@
 ;;; seoul256-theme.el --- Low-contrast color scheme based on Seoul Colors.
 
-;; Copyright (C) 2016 Anand Iyer
+;; Copyright (C) 2016-2018 Anand Iyer
 
 ;; Author: Anand Iyer <anand.ucb@gmail.com>
 ;; Maintainer: Anand Iyer <anand.ucb@gmail.com>
@@ -350,8 +350,5 @@
                (file-name-as-directory (file-name-directory load-file-name))))
 
 (provide-theme 'seoul256)
-;; Local Variables:
-;; fill-column: 99
-;; End:
 
 ;;; seoul256-theme.el ends here
