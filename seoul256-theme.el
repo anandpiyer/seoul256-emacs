@@ -6,8 +6,8 @@
 ;; Maintainer: Anand Iyer <anand.ucb@gmail.com>
 ;; URL: http://github.com/anandpiyer/seoul256-emacs
 ;; Created: 21 October 2016
-;; Modified: 05 April 2018
-;; Version: 0.3.4
+;; Modified: 12 April 2018
+;; Version: 0.3.5
 ;; Keywords: theme
 ;; Package-Requires: ((emacs "24.3"))
 
@@ -236,6 +236,9 @@
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      ;;;; package-specific
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     ;; anzu
+     `(anzu-mode-line    ((t (:inherit mode-line-highlight))))
+
      ;; company
      `(company-preview                       ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
      `(company-preview-common                ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
@@ -309,7 +312,13 @@
 
      ;; solaire-mode
      `(solaire-default-face  ((t (:background ,(hex (- dark-bg 1) (- light-bg 1))))))
-     `(solaire-hl-line-face  ((t (:background ,(hex (- dark-bg 2) (- light-bg 2)))))))))
+     `(solaire-hl-line-face  ((t (:background ,(hex (- dark-bg 2) (- light-bg 2))))))
+
+     ;; tabbar
+     `(tabbar-default       ((t (:background ,(hex (+ dark-bg 2) (- light-bg 2))))))
+     `(tabbar-button        ((t (:inherit tabbar-default))))
+     `(tabbar-selected      ((t (:foreground ,(hex 23 66) :background ,(hex 187 187)))))
+     `(tabbar-unselected    ((t (:foreground ,(hex (+ dark-bg 4) (- light-bg 4)) :background ,(hex (+ dark-bg 12) (- light-bg 12))) ))) )))
 
 (defun seoul256-create (theme background)
   "Create a seoul256 theme `THEME' using a given `BACKGROUND'."
