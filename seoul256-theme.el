@@ -6,8 +6,8 @@
 ;; Maintainer: Anand Iyer <anand.ucb@gmail.com>
 ;; URL: http://github.com/anandpiyer/seoul256-emacs
 ;; Created: 21 October 2016
-;; Modified: 12 April 2018
-;; Version: 0.3.5
+;; Modified: 22 April 2018
+;; Version: 0.3.6
 ;; Keywords: theme
 ;; Package-Requires: ((emacs "24.3"))
 
@@ -154,7 +154,7 @@
   "Use this alist to override the theme's default colors.")
 
 (defvar seoul256-colors-alist
-  (append seoul256-default-colors-alist seoul256-override-colors-alist))
+  (append seoul256-override-colors-alist seoul256-default-colors-alist))
 
 (defvar seoul256-current-bg nil
   "Current background used by seoul256 theme.")
@@ -223,11 +223,11 @@
      `(linum    ((t (:inherit line-number))))
 
      ;; mode-line
-     `(mode-line            ((t (:foreground ,(hex 187 187) :background ,(hex 95 95) :box (:line-width -1 :style released-button)))))
+     `(mode-line            ((t (:foreground ,(hex 187 187) :background ,(hex 95 95)))))
      `(mode-line-buffer-id  ((t (:foreground ,(hex 230 230)))))
      `(mode-line-emphasis   ((t (:foreground ,(hex 256 256) :weight bold))))
      `(mode-line-highlight  ((t (:inherit highlight))))
-     `(mode-line-inactive   ((t (:foreground ,(hex (+ dark-bg 10) (- light-bg 10)) :background ,(hex (+ dark-bg 2) (- light-bg 2) ) :box (:line-width -1 :style released-button)))))
+     `(mode-line-inactive   ((t (:foreground ,(hex (+ dark-bg 10) (- light-bg 10)) :background ,(hex (+ dark-bg 2) (- light-bg 2) )))))
 
      ;; show-paren
      `(show-paren-match     ((t (:foreground ,(hex 226 200) :background ,(hex (+ dark-bg 3) (- light-bg 3)) :weight bold))))
@@ -293,10 +293,12 @@
      `(nlinum-relative-current-face ((t (:inherit line-number-current-line))))
 
      ;; powerline
-     `(powerline-active1     ((t (:inherit mode-line))))
-     `(powerline-active2     ((t (:inherit powerline-active1))))
+     `(powerline-active0     ((t (:inherit mode-number))))
+     `(powerline-active1     ((t (:inherit line-number))))
+     `(powerline-active2     ((t (:inherit default))))
      `(powerline-inactive1   ((t (:inherit mode-line-inactive))))
      `(powerline-inactive2   ((t (:inherit powerline-inactive1))))
+     `(powerline-inactive3   ((t (:inherit powerline-inactive1))))
 
      ;; rainbow-delimiters
      `(rainbow-delimiters-unmatched-face ((t (:inherit show-paren-mismatch))))

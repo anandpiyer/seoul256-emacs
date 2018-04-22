@@ -1,5 +1,5 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=plastic)](https://github.com/anandpiyer/seoul256-emacs/blob/master/LICENSE) [![MELPA](https://melpa.org/packages/seoul256-theme-badge.svg)](https://melpa.org/#/seoul256-theme)
-# Seoul256 for Emacs 
+# Seoul256 for Emacs
 
 Seoul256 for Emacs is an Emacs theme port of [**seoul256 color scheme for vim**](https://github.com/junegunn/seoul256.vim/) by Junegunn Choi. This is a work in progress.
 
@@ -23,7 +23,7 @@ Download and save the following file into your custom theme directory (e.g., `~/
 
 * [seoul256-theme.el](https://raw.githubusercontent.com/anandpiyer/seoul256-emacs/master/seoul256-theme.el)
 
-Make sure Emacs knows about your custom theme directory. You may do this by adding something like the following in your init file: 
+Make sure Emacs knows about your custom theme directory. You may do this by adding something like the following in your init file:
 
 ```el
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
@@ -34,7 +34,7 @@ Now you can load the theme using <kbd>M-x</kbd> `load-theme` <kbd>RET</kbd> `seo
 ## Customization
 ### Color Variants
 Like the original, this port offers different background colors. To change the background, use the variable `seoul256-background` before loading the theme, e.g.,
- 
+
 ```el
 ;;; dark variants
 ;; Range:   233 (darkest) ~ 239 (lightest)
@@ -48,7 +48,7 @@ Like the original, this port offers different background colors. To change the b
 (setq seoul256-background 255)
 (load-theme 'seoul256 t)
 ```
-The variant of the theme (dark or light) is determined by this variable. Dark variants range from 233 to 239 and light variants range from 252 to 256. By default, the theme uses a dark variant. 
+The variant of the theme (dark or light) is determined by this variable. Dark variants range from 233 to 239 and light variants range from 252 to 256. By default, the theme uses a dark variant.
 
 ### Background-switching
 Sometimes, it is beneficial to be able to switch between two variants of the theme using a key binding. For this purpose, this theme offers an interactive function `seoul256-switch-background` that switches between `seoul256-background` (default 237, dark unless set by the user) and `seoul256-alternate-background` (default 253, light unless set by the user), but you could set them to anything of your choice. For example, perhaps you don't like light variants, but want to switch between the darkest and lightest contrasts of the dark theme. You could do the following:
@@ -65,8 +65,8 @@ Then switch using <kbd>M-x</kbd> `seoul256-switch-background`.
 If you don't like the default colors, you can override them by defining new colors in `seoul256-override-colors-alist` variable before loading the theme:
 
 ```el
+;; Change comments to grey from green.
 (setq seoul256-override-colors-alist
-'((16 . "#CCCCCC")
-  (200  . "#F6F6F6"))
+'((65 . "#a6a6a6")))
 (load-theme 'seoul256 t)
 ```
