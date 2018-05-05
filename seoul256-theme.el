@@ -6,8 +6,8 @@
 ;; Maintainer: Anand Iyer <anand.ucb@gmail.com>
 ;; URL: http://github.com/anandpiyer/seoul256-emacs
 ;; Created: 21 October 2016
-;; Modified: 22 April 2018
-;; Version: 0.3.6
+;; Modified: 05 May 2018
+;; Version: 0.3.7
 ;; Keywords: theme
 ;; Package-Requires: ((emacs "24.3"))
 
@@ -175,7 +175,7 @@
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      ;; basic ui
      '(button                       ((t (:underline t))))
-     `(cursor                       ((t (:background ,(hex (- light-bg 1) (- dark-bg 1))))))
+     `(cursor                       ((t (:background ,(hex (- light-bg 1) 95)))))
      `(default                      ((t (:foreground ,(hex dark-fg light-fg) :background ,(hex dark-bg light-bg)))))
      `(fringe                       ((t (:inherit default))))
      `(header-line                  ((t (:foreground ,(hex 256 16)))))
@@ -349,9 +349,31 @@
 (defun seoul256-switch-background ()
   "Switch the background of the current seoul256 theme."
   (interactive)
-  (if (= seoul256-current-bg seoul256-alternate-background)
+  (let ((diff1 0)
+        (diff2 0))
+    (setq diff1 (abs (- seoul256-current-bg seoul256-alternate-background))
+          diff2 (abs (- seoul256-current-bg seoul256-background)))
+    (if (< diff1 diff2)
       (seoul256-create 'seoul256 seoul256-background)
-    (seoul256-create 'seoul256 seoul256-alternate-background)))
+    (seoul256-create 'seoul256 seoul256-alternate-background))))
+
+(defun seoul256-darken-background ()
+  "Darken current background."
+  (interactive)
+  (when (or (and (> seoul256-current-bg 233)
+                 (<= seoul256-current-bg 239))
+            (and (> seoul256-current-bg 252)
+                 (<= seoul256-current-bg 256)))
+    (seoul256-create 'seoul256 (- seoul256-current-bg 1))))
+
+(defun seoul256-brighten-background ()
+  "Brighten current background."
+  (interactive)
+  (when (or (and (>= seoul256-current-bg 233)
+                 (< seoul256-current-bg 239))
+            (and (>= seoul256-current-bg 252)
+                 (< seoul256-current-bg 256)))
+    (seoul256-create 'seoul256 (+ 1 seoul256-current-bg))))
 
 (seoul256-create 'seoul256 seoul256-background)
 
