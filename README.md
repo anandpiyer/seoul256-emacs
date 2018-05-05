@@ -85,7 +85,8 @@ This theme also comes with two helper functions, `seoul256-darken-background`
 and `seoul256-brighten-background` that lets you change the contrast of the
 background. Internally, these functions change `seoul256-background` to the next
 (or previous) in the range within the limits allowed by the theme. You could
-bind these functions to your `Fn` keys (e.g., `F1/F2`).
+bind these functions to keys of your choice (e.g., <kbd>F1</kbd> for
+darken and <kbd>F2</kbd> for brighten).
 
 ### Overriding Default Colors
 If you don't like the default colors, you can override them by defining new
